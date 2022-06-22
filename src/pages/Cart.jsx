@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Cart() {
 	return (
@@ -21,9 +22,11 @@ function Cart() {
 						</span>
 					</div>
 					<div className="cart__bottom-buttons">
-						<a href="/" className="button button--outline button--add go-back-btn">
-							<span>Вернуться назад</span>
-						</a>
+						<Link to="/">
+							<button className="button button--outline button--add go-back-btn">
+								<span>Вернуться назад</span>
+							</button>
+						</Link>
 						<div className="button pay-btn">
 							<span>Оплатить сейчас</span>
 						</div>

@@ -11,7 +11,7 @@ body {
 	width: calc(100vw - 100px);
 	height: 100%;
 	background-color: #fff;
-	margin: 50px auto;
+	margin: 30px auto;
 	border-radius: 10px;
 	max-width: 1400px;
 }
@@ -26,9 +26,10 @@ body {
 	}
 
 	&__items {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		grid-column-gap: 11px;
 	}
 
 	&__top {

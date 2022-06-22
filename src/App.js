@@ -1,12 +1,13 @@
 import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 import axios from 'axios'
 
 import './scss/app.scss'
 
 import Header from './components/Header'
-import Categories from './components/Categories'
-import Sort from './components/Sort'
 import Home from './pages/Home'
+import Cart from './pages/Cart'
+import NotFound from './pages/NotFound'
 
 function App() {
 	const [catalog, setCatalog] = React.useState([])
@@ -34,12 +35,11 @@ function App() {
 			<Header />
 			<div className="content">
 				<div className="container">
-					<div className="content__top">
-						<Categories />
-						<Sort />
-					</div>
-					<h2 className="content__title">Все пиццы</h2>
-					<Home catalog={catalog} dataIsLoading={dataIsLoading} />
+					<Routes>
+						<Route path="/" element={<Home catalog={catalog} dataIsLoading={dataIsLoading} />} />
+						<Route path="cart" element={<Cart />} />
+						<Route path="*" element={<NotFound />} />
+					</Routes>
 				</div>
 			</div>
 		</div>
