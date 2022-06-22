@@ -1,4 +1,5 @@
 import React from 'react'
+import Skeleton from './Skeleton'
 
 function PizzaBlock({ imageUrl, title, types, sizes, price }) {
 	const [pizzaCount, setPizzaCount] = React.useState(0)

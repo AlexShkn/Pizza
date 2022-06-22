@@ -1,14 +1,14 @@
 import React from 'react'
 import PizzaBlock from '../components/PizzaBlock'
+import Skeleton from '../components/PizzaBlock/Skeleton'
 
-function Home({ catalog }) {
+function Home({ catalog, dataIsLoading }) {
+	const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />)
+	const pizzasList = catalog.map(item => <PizzaBlock key={item.id} {...item} />)
+
 	return (
 		<div>
-			<div className="content__items">
-				{catalog.map(item => (
-					<PizzaBlock key={item.id} {...item} />
-				))}
-			</div>
+			<div className="content__items">{dataIsLoading ? skeleton : pizzasList}</div>
 		</div>
 	)
 }

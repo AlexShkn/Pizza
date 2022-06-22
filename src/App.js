@@ -10,6 +10,7 @@ import Home from './pages/Home'
 
 function App() {
 	const [catalog, setCatalog] = React.useState([])
+	const [dataIsLoading, setDataIsLoading] = React.useState(true)
 
 	const dataUrl = 'https://62b1cf3920cad3685c837f0e.mockapi.io'
 
@@ -17,7 +18,9 @@ function App() {
 		async function fetchData() {
 			try {
 				const itemsResponse = await axios.get(`${dataUrl}/pizzas`)
+
 				setCatalog(itemsResponse.data)
+				setDataIsLoading(false)
 			} catch (error) {
 				alert('Не удалось сделать запрос данных')
 			}
@@ -36,7 +39,7 @@ function App() {
 						<Sort />
 					</div>
 					<h2 className="content__title">Все пиццы</h2>
-					<Home catalog={catalog} />
+					<Home catalog={catalog} dataIsLoading={dataIsLoading} />
 				</div>
 			</div>
 		</div>
