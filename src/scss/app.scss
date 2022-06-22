@@ -20,7 +20,9 @@ body {
 	padding: 40px 0;
 
 	&__title {
-		margin: 35px 0;
+		margin: 55px 0;
+		font-weight: 800;
+		font-size: 38px;
 	}
 
 	&__items {
@@ -69,7 +71,7 @@ body {
 			margin-right: 10px;
 			path {
 				stroke: $black;
-				stroke-width: 1.9;
+				strokewidth: 1.9;
 			}
 		}
 	}
@@ -258,7 +260,7 @@ body {
 					margin-right: 12px;
 					path {
 						fill: transparent;
-						stroke-width: 2;
+						strokewidth: 2;
 					}
 				}
 			}

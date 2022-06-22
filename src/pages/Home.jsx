@@ -1,10 +1,14 @@
 import React from 'react'
 import PizzaBlock from '../components/PizzaBlock'
 
-function Home() {
+function Home({ catalog }) {
 	return (
 		<div>
-			<PizzaBlock />
+			<div className="content__items">
+				{catalog.map(item => (
+					<PizzaBlock key={item.id} {...item} />
+				))}
+			</div>
 		</div>
 	)
 }

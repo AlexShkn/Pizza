@@ -2,17 +2,17 @@ import React from 'react'
 
 function Cart() {
 	return (
-		<div class="container container--cart">
-			<div class="cart">
-				<div class="cart__top">
-					<h2 class="content__title"> Корзина</h2>
-					<div class="cart__clear">
+		<div className="container container--cart">
+			<div className="cart">
+				<div className="cart__top">
+					<h2 className="content__title"> Корзина</h2>
+					<div className="cart__clear">
 						<span>Очистить корзину</span>
 					</div>
 				</div>
-				<div class="content__items"></div>
-				<div class="cart__bottom">
-					<div class="cart__bottom-details">
+				<div className="content__items"></div>
+				<div className="cart__bottom">
+					<div className="cart__bottom-details">
 						<span>
 							Всего пицц: <b>3 шт.</b>
 						</span>
@@ -20,11 +20,11 @@ function Cart() {
 							Сумма заказа: <b>900 ₽</b>
 						</span>
 					</div>
-					<div class="cart__bottom-buttons">
-						<a href="/" class="button button--outline button--add go-back-btn">
+					<div className="cart__bottom-buttons">
+						<a href="/" className="button button--outline button--add go-back-btn">
 							<span>Вернуться назад</span>
 						</a>
-						<div class="button pay-btn">
+						<div className="button pay-btn">
 							<span>Оплатить сейчас</span>
 						</div>
 					</div>
