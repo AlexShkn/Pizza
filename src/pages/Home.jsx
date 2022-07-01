@@ -9,6 +9,10 @@ function Home({ catalog, dataIsLoading }) {
 	const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />)
 	const pizzasList = catalog.map(item => <PizzaBlock key={item.id} {...item} />)
 
+	React.useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [])
+
 	return (
 		<>
 			<div className="content__top">
@@ -16,9 +20,7 @@ function Home({ catalog, dataIsLoading }) {
 				<Sort />
 			</div>
 			<h2 className="content__title">Все пиццы</h2>
-			<div>
-				<div className="content__items">{dataIsLoading ? skeleton : pizzasList}</div>
-			</div>
+			<div className="content__items">{dataIsLoading ? skeleton : pizzasList}</div>
 		</>
 	)
 }

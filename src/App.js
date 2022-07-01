@@ -26,7 +26,6 @@ function App() {
 				alert('Не удалось сделать запрос данных')
 			}
 		}
-
 		fetchData()
 	}, [])
 
@@ -37,7 +36,7 @@ function App() {
 				<div className="container">
 					<Routes>
 						<Route path="/" element={<Home catalog={catalog} dataIsLoading={dataIsLoading} />} />
-						<Route path="cart" element={<Cart />} />
+						<Route path="cart" element={<Cart catalog={catalog} />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</div>

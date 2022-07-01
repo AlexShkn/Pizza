@@ -8,13 +8,24 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		@media (max-width: 550px) {
+			flex-direction: column;
+			gap: 20px;
+		}
 	}
 
 	&__logo {
 		display: flex;
+		@media (min-width: 550px) and (max-width: 670px) {
+			max-width: 230px;
+		}
 
 		img {
 			margin-right: 15px;
+			width: 38px;
+			@media (min-width: 550px) and (max-width: 670px) {
+				width: 24px;
+			}
 		}
 
 		h1 {
@@ -23,10 +34,16 @@
 			letter-spacing: 1%;
 			text-transform: uppercase;
 			font-weight: 800;
+			@media (min-width: 551px) and (max-width: 670px) {
+				font-size: 20px;
+			}
 		}
 
 		p {
 			color: #7b7b7b;
+			@media (max-width: 470px) {
+				display: none;
+			}
 		}
 	}
 }

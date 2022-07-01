@@ -11,6 +11,9 @@
 	transition: background-color $duration ease-in-out, border-color $duration ease-in-out;
 	border: 1px solid transparent;
 	@include noselect();
+	@media (max-width: 470px) {
+		padding: 10px 30px;
+	}
 
 	&,
 	span {
@@ -31,6 +34,10 @@
 	&:active {
 		background-color: darken($orange, 12%);
 		transform: translateY(1px);
+	}
+
+	&__cart {
+		display: flex;
 	}
 
 	&--circle {
@@ -103,6 +110,9 @@
 		span {
 			font-weight: 600;
 			font-size: 16px;
+			@media (max-width: 470px) {
+				font-size: 14px;
+			}
 		}
 
 		&:hover {
@@ -143,6 +153,9 @@
 		span {
 			font-weight: 600;
 			font-size: 16px;
+			&:last-child {
+				border-bottom: 1px;
+			}
 		}
 	}
 }
