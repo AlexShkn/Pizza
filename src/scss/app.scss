@@ -23,7 +23,7 @@ body {
 	}
 
 	&__title {
-		margin: 55px 0;
+		margin: 45px 0;
 		font-weight: 800;
 		font-size: 38px;
 		@media (max-width: 470px) {
@@ -60,6 +60,10 @@ body {
 					flex-wrap: wrap;
 					display: flex;
 					justify-content: center;
+				}
+
+				li {
+					margin-bottom: 10px;
 				}
 			}
 		}

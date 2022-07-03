@@ -11,9 +11,6 @@
 	transition: background-color $duration ease-in-out, border-color $duration ease-in-out;
 	border: 1px solid transparent;
 	@include noselect();
-	@media (max-width: 470px) {
-		padding: 10px 30px;
-	}
 
 	&,
 	span {
@@ -104,7 +101,7 @@
 
 	&--add {
 		svg {
-			margin-right: 2px;
+			margin-right: 5px;
 		}
 
 		span {
