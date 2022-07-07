@@ -39,7 +39,8 @@
 	&__label {
 		position: relative;
 		max-width: 200px;
-		background-color: #282828;
+		// background-color: #282828;
+		background-color: #f9f9f9;
 		padding: 13px 30px;
 		border-radius: 30px;
 		margin-right: 10px;
@@ -47,7 +48,7 @@
 		cursor: pointer;
 		transition: background-color 0.1s ease-in-out;
 		span {
-			color: #fff;
+			color: #282828;
 		}
 		svg {
 			position: absolute;

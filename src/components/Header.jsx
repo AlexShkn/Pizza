@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import logotype from '../assets/img/pizza-logo.svg'
+import logotype from '../assets/img/pizza-logo1.svg'
 
 function Header() {
 	return (
@@ -11,8 +11,7 @@ function Header() {
 					<div className="header__logo">
 						<img src={logotype} alt="Pizza logo" />
 						<div>
-							<h1>React Pizza</h1>
-							<p>самая вкусная пицца во вселенной</p>
+							<h1>Pizza</h1>
 						</div>
 					</div>
 				</Link>

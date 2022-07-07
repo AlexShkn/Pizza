@@ -2,20 +2,26 @@
 
 .header {
 	border-bottom: 1px solid $gray-line;
-	padding: 40px 0;
+	padding: 20px 0;
+	position: sticky;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 50;
+	background-color: #fff;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 
 	.container {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		@media (max-width: 550px) {
-			flex-direction: column;
-			gap: 20px;
-		}
+		background-color: #fff;
 	}
 
 	&__logo {
 		display: flex;
+		align-items: center;
 		@media (min-width: 550px) and (max-width: 670px) {
 			max-width: 230px;
 		}
@@ -34,14 +40,27 @@
 			letter-spacing: 1%;
 			text-transform: uppercase;
 			font-weight: 800;
-			@media (min-width: 551px) and (max-width: 670px) {
-				font-size: 20px;
-			}
 		}
 
 		p {
 			color: #7b7b7b;
 			@media (max-width: 470px) {
+				display: none;
+			}
+		}
+	}
+
+	&__cart {
+		@media (max-width: 400px) {
+			span {
+				&:first-child {
+					display: none;
+				}
+			}
+			.button {
+				min-width: 0;
+			}
+			.button__delimiter {
 				display: none;
 			}
 		}

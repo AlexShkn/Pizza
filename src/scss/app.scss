@@ -19,7 +19,7 @@ body {
 .content {
 	padding: 40px 0;
 	@media (max-width: 470px) {
-		padding: 0;
+		padding: 20px 0;
 	}
 
 	&__title {
@@ -71,6 +71,8 @@ body {
 			.categories {
 				max-width: 600px;
 			}
+		}
+		@media (max-width: 530px) {
 		}
 	}
 }

@@ -9,7 +9,7 @@ function Categories() {
 	const currentWindowWidth = useWindowSize()
 	const categoriesList = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
 
-	const updateSelectedCategoryItem = index => {
+	const updateSelectedCategory = index => {
 		setSelectedCategory(index)
 		setOpenCategoryList(false)
 	}
@@ -50,12 +50,11 @@ function Categories() {
 							/>
 						</svg>
 					</div>
-
 					{onOpenCategoryList && (
 						<ul className="categories__popup">
 							{categoriesList.map((name, index) => (
 								<li
-									onClick={() => updateSelectedCategoryItem(index)}
+									onClick={() => updateSelectedCategory(index)}
 									key={index}
 									className={selectedCategory === index ? 'active' : ''}>
 									{name}
