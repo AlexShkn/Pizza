@@ -1,0 +1,48 @@
+.Search {
+	flex: 0 1 500px;
+	display: flex;
+	align-items: center;
+	border: 3px solid #f3f3f3;
+	border-radius: 5px;
+	padding: 4px 10px;
+	@media (max-width: 750px) {
+		order: 3;
+		flex: 0 1 400px;
+	}
+
+	svg {
+		width: 25px;
+		height: 25px;
+		margin-right: 10px;
+		@media (max-width: 750px) {
+			cursor: pointer;
+		}
+	}
+
+	input {
+		padding-left: 10px;
+		height: 38px;
+		width: 100%;
+		border: none;
+		border-bottom: 1px solid #f3f3f3;
+		color: #c0c0c0;
+	}
+}
+
+.hidden {
+	border: none;
+	flex: 0 0 auto;
+	order: 3;
+
+	input {
+		visibility: hidden;
+	}
+	svg {
+		width: 25px;
+		height: 25px;
+		margin-right: 10px;
+		@media (max-width: 750px) {
+			cursor: pointer;
+		}
+	}
+}
