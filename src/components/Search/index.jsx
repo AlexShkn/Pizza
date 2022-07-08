@@ -6,20 +6,14 @@ import styles from './Search.module.scss'
 
 function Search() {
 	const currentWindowWidth = useWindowSize()
-	let searchOnVisible = currentWindowWidth
-	// const currenWidth = searchOnVisible < '550'
-	console.log(searchOnVisible)
+	let searchOnVisible = currentWindowWidth < '550'
 
-	const [onFieldOpen, setFieldOpen] = React.useState(searchOnVisible)
+	const [onFieldOpen, setFieldOpen] = React.useState(false)
 
-	const onOpenInputField = () => {
-		setFieldOpen(!onFieldOpen)
-	}
-	console.log(onFieldOpen)
 	return (
 		<div
-			onClick={onFieldOpen < '550' ? () => onOpenInputField() : undefined}
-			className={onFieldOpen ? (styles.Search, styles.hidden) : styles.Search}>
+			onClick={searchOnVisible ? () => setFieldOpen(!onFieldOpen) : undefined}
+			className={styles.Search}>
 			<svg
 				className={styles.Search_icon}
 				enableBackground="new 0 0 32 32"

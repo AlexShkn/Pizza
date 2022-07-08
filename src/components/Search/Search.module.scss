@@ -7,13 +7,14 @@
 	padding: 4px 10px;
 	@media (max-width: 750px) {
 		order: 3;
-		flex: 0 1 400px;
+		max-width: 400px;
+		border: none;
+		flex: 0 0 auto;
 	}
 
 	svg {
 		width: 25px;
 		height: 25px;
-		margin-right: 10px;
 		@media (max-width: 750px) {
 			cursor: pointer;
 		}
@@ -21,28 +22,29 @@
 
 	input {
 		padding-left: 10px;
+		margin-left: 10px;
 		height: 38px;
-		width: 100%;
 		border: none;
 		border-bottom: 1px solid #f3f3f3;
 		color: #c0c0c0;
-	}
-}
-
-.hidden {
-	border: none;
-	flex: 0 0 auto;
-	order: 3;
-
-	input {
-		visibility: hidden;
-	}
-	svg {
-		width: 25px;
-		height: 25px;
-		margin-right: 10px;
 		@media (max-width: 750px) {
-			cursor: pointer;
+			display: none;
 		}
 	}
 }
+
+// .visible {
+// 	border: 3px solid #f3f3f3;
+
+// 	input {
+// 		display: block;
+// 	}
+// 	svg {
+// 		width: 25px;
+// 		height: 25px;
+// 		margin-right: 10px;
+// 		@media (max-width: 750px) {
+// 			cursor: pointer;
+// 		}
+// 	}
+// }

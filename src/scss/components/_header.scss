@@ -18,6 +18,9 @@
 		justify-content: space-between;
 		background-color: #fff;
 		gap: 20px;
+		&:first-child {
+			flex: 1 1 auto;
+		}
 		@media (max-width: 750px) {
 			flex-wrap: wrap;
 		}
@@ -51,11 +54,16 @@
 		}
 	}
 
+	&__nav {
+		display: flex;
+		gap: 20px;
+	}
+
 	&__cart {
 		@media (min-width: 750px) {
 			min-width: 160px;
 		}
-		@media (max-width: 400px) {
+		@media (max-width: 470px) {
 			span {
 				&:first-child {
 					display: none;
