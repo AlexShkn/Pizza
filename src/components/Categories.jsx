@@ -2,15 +2,14 @@ import React from 'react'
 
 import useWindowSize from '../hooks/useWindowSize'
 
-function Categories() {
-	const [selectedCategory, setSelectedCategory] = React.useState(0)
+function Categories({ selectedCategory, onChangeCategory }) {
 	const [onOpenCategoryList, setOpenCategoryList] = React.useState(false)
 
 	const currentWindowWidth = useWindowSize()
 	const categoriesList = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
 
 	const updateSelectedCategory = index => {
-		setSelectedCategory(index)
+		onChangeCategory(index)
 		setOpenCategoryList(false)
 	}
 
@@ -21,7 +20,7 @@ function Categories() {
 					{categoriesList.map((category, index) => (
 						<li
 							key={index}
-							onClick={() => setSelectedCategory(index)}
+							onClick={() => onChangeCategory(index)}
 							className={selectedCategory === index ? 'active' : ''}>
 							{category}
 						</li>
