@@ -1,7 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+<<<<<<< HEAD
 import cart from '../assets/img/cart.svg'
+=======
+import Search from './Search'
+>>>>>>> search
 
 import logotype from '../assets/img/pizza-logo1.svg'
 
@@ -17,6 +21,7 @@ function Header() {
 						</div>
 					</div>
 				</Link>
+				<Search />
 				<Link to="cart">
 					<div className="header__cart">
 						<button className="button button--cart">
