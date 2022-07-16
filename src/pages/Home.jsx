@@ -13,10 +13,8 @@ function Home() {
 	const [selectedCategory, setSelectedCategory] = React.useState(0)
 	const [sortSelectedType, setSortSelectedType] = React.useState({
 		name: 'цене',
-		sortType: 'price',
+		sortProperty: 'price',
 	})
-
-	const dataUrl = 'https://62b1cf3920cad3685c837f0e.mockapi.io'
 
 	const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />)
 	const pizzasList = catalog.map(item => <PizzaBlock key={item.id} {...item} />)
@@ -24,6 +22,8 @@ function Home() {
 	React.useEffect(() => {
 		async function fetchData() {
 			setDataIsLoading(true)
+
+			const dataUrl = 'https://62b1cf3920cad3685c837f0e.mockapi.io'
 			const category = selectedCategory > 0 ? `category=${selectedCategory}` : ''
 			const sortBy = sortSelectedType.sortProperty.replace('-', '')
 			const order = sortSelectedType.sortProperty.includes('-') ? 'asc' : 'desc'

@@ -12,9 +12,7 @@ function Cart({ catalog }) {
 				<div className="cart__top">
 					<h2 className="content__title"> Корзина</h2>
 					<div className="cart__clear">
-<<<<<<< HEAD
 						<img src={clear} alt="" />
-=======
 						<svg
 							width="20"
 							height="20"
@@ -46,7 +44,6 @@ function Cart({ catalog }) {
 								strokeLinecap="round"
 								stroke-linejoin="round"></path>
 						</svg>
->>>>>>> search
 						<span>Очистить корзину</span>
 					</div>
 				</div>
