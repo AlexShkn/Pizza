@@ -4,11 +4,11 @@ import useWindowSize from '../../hooks/useWindowSize'
 
 import styles from './Search.module.scss'
 
-function Search() {
+function Search({ searchValue, setSearchValue }) {
+	const [onFieldOpen, setFieldOpen] = React.useState(false)
+
 	const currentWindowWidth = useWindowSize()
 	let searchOnVisible = currentWindowWidth < '550'
-
-	const [onFieldOpen, setFieldOpen] = React.useState(false)
 
 	return (
 		<div
@@ -45,7 +45,12 @@ function Search() {
 					y1="27"
 					y2="20.366"></line>
 			</svg>
-			<input placeholder="Поиск пиццы..." />
+			<input
+				value={searchValue}
+				onChange={e => setSearchValue(e.target.value)}
+				placeholder="Поиск пиццы..."
+			/>
+			{searchValue && <span onClick={() => setSearchValue('')}>+</span>}
 		</div>
 	)
 }

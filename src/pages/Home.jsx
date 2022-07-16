@@ -6,14 +6,13 @@ import Sort from '../components/Sort'
 import PizzaBlock from '../components/PizzaBlock'
 import Skeleton from '../components/PizzaBlock/Skeleton'
 
-function Home() {
+function Home({ searchValue }) {
 	const [catalog, setCatalog] = React.useState([])
 	const [dataIsLoading, setDataIsLoading] = React.useState(true)
-
 	const [selectedCategory, setSelectedCategory] = React.useState(0)
 	const [sortSelectedType, setSortSelectedType] = React.useState({
-		name: 'цене',
-		sortProperty: 'price',
+		name: 'цене(ASC)',
+		sortProperty: '-price',
 	})
 
 	const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />)
@@ -27,9 +26,10 @@ function Home() {
 			const category = selectedCategory > 0 ? `category=${selectedCategory}` : ''
 			const sortBy = sortSelectedType.sortProperty.replace('-', '')
 			const order = sortSelectedType.sortProperty.includes('-') ? 'asc' : 'desc'
+			const search = searchValue ? `&search=${searchValue}` : ''
 			try {
 				const itemsResponse = await axios.get(
-					`${dataUrl}/pizzas?${category}&sortBy=${sortBy}&order=${order}`,
+					`${dataUrl}/pizzas?${category}&sortBy=${sortBy}&order=${order}${search}`,
 				)
 				setCatalog(itemsResponse.data)
 				setDataIsLoading(false)
@@ -39,7 +39,7 @@ function Home() {
 		}
 		fetchData()
 		window.scrollTo(0, 0)
-	}, [selectedCategory, sortSelectedType])
+	}, [selectedCategory, sortSelectedType, searchValue])
 
 	return (
 		<>
