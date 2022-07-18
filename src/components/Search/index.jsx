@@ -60,7 +60,11 @@ function Search() {
 					onChange={e => setSearchValue(e.target.value)}
 					placeholder="Поиск пиццы..."
 				/>
-				{searchValue && <span onClick={() => setSearchValue('')}></span>}
+				{searchValue && (
+					<span className={styles.closed} onClick={() => setSearchValue('')}>
+						+
+					</span>
+				)}
 			</div>
 		</div>
 	)

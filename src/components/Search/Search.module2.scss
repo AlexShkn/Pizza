@@ -1,0 +1,70 @@
+.Search {
+	position: relative;
+	flex: 0 1 500px;
+	display: flex;
+	align-items: center;
+	border: 3px solid #f3f3f3;
+	border-radius: 10px;
+	padding: 4px 10px;
+	@media (max-width: 750px) {
+		order: 3;
+		max-width: 400px;
+		border: none;
+		flex: 0 0 auto;
+	}
+
+	svg {
+		width: 25px;
+		height: 25px;
+		@media (max-width: 750px) {
+			cursor: pointer;
+		}
+	}
+
+	input {
+		width: 100%;
+		padding-left: 10px;
+		margin-left: 10px;
+		height: 38px;
+		border: none;
+		border-bottom: 1px solid #f3f3f3;
+		font-size: 16px;
+		&::placeholder {
+			color: #c0c0c0;
+			font-size: 14px;
+		}
+		@media (max-width: 750px) {
+			display: none;
+		}
+	}
+
+	span {
+		position: absolute;
+		right: 10px;
+		font-size: 32px;
+		color: #c0c0c0;
+		transform: rotate(-45deg);
+		opacity: 0.5;
+		cursor: pointer;
+		transition: opacity 0.3s ease 0s;
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+// .visible {
+// 	border: 3px solid #f3f3f3;
+
+// 	input {
+// 		display: block;
+// 	}
+// 	svg {
+// 		width: 25px;
+// 		height: 25px;
+// 		margin-right: 10px;
+// 		@media (max-width: 750px) {
+// 			cursor: pointer;
+// 		}
+// 	}
+// }
