@@ -6,17 +6,24 @@ import useWindowSize from '../../hooks/useWindowSize'
 import styles from './Search.module.scss'
 
 function Search() {
-	const [onFieldOpen, setFieldOpen] = React.useState(false)
+	const [onFieldOpen, setFieldOpen] = React.useState(true)
 	const { searchValue, setSearchValue } = React.useContext(AppContext)
 
 	const currentWindowWidth = useWindowSize()
-	const showSearch = currentWindowWidth < '550'
+	const showSearch = currentWindowWidth < '1000'
+
+	React.useEffect(() => {
+		if (showSearch) {
+			setFieldOpen(false)
+		} else {
+			setFieldOpen(true)
+		}
+	}, [currentWindowWidth])
 
 	return (
-		<div
-			onClick={showSearch ? () => setFieldOpen(!onFieldOpen) : undefined}
-			className={styles.Search}>
+		<div className={onFieldOpen ? [styles.Search, styles.open].join(' ') : styles.Search}>
 			<svg
+				onClick={showSearch ? () => setFieldOpen(!onFieldOpen) : undefined}
 				className={styles.Search_icon}
 				enableBackground="new 0 0 32 32"
 				id="EditableLine"
@@ -47,12 +54,14 @@ function Search() {
 					y1="27"
 					y2="20.366"></line>
 			</svg>
-			<input
-				value={searchValue}
-				onChange={e => setSearchValue(e.target.value)}
-				placeholder="Поиск пиццы..."
-			/>
-			{searchValue && <span onClick={() => setSearchValue('')}>+</span>}
+			<div>
+				<input
+					value={searchValue}
+					onChange={e => setSearchValue(e.target.value)}
+					placeholder="Поиск пиццы..."
+				/>
+				{searchValue && <span onClick={() => setSearchValue('')}></span>}
+			</div>
 		</div>
 	)
 }

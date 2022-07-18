@@ -80,7 +80,7 @@ body {
 .container {
 	width: $container-width;
 	margin: 0 auto;
-
+	padding: 0 15px;
 	&--cart {
 		max-width: 820px;
 		margin: 90px auto;

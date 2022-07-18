@@ -15,18 +15,22 @@
 	.container {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
 		background-color: #fff;
-		gap: 20px;
-		&:first-child {
-			flex: 1 1 auto;
+		gap: 30px;
+		flex: 1 1 100%;
+		a {
+			&:first-child {
+				flex: 1 1 auto;
+			}
 		}
-		@media (max-width: 750px) {
+
+		@media (max-width: 850px) {
 			flex-wrap: wrap;
 		}
 	}
 
 	&__logo {
+		flex: 1 1 auto;
 		display: flex;
 		align-items: center;
 		@media (min-width: 550px) and (max-width: 670px) {
