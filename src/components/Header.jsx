@@ -10,14 +10,19 @@ function Header({ searchValue, setSearchValue }) {
 	return (
 		<div className="header">
 			<div className="container">
-				<Link to="/">
-					<div className="header__logo">
-						<img src={logotype} alt="Pizza logo" />
+				<div className="header__logo">
+					<div className="header__logo-wrapper">
+						<Link to="/">
+							<img src={logotype} alt="Pizza logo" />
+						</Link>
 						<div>
-							<h1>Pizza</h1>
+							<Link to="/">
+								<h1>Pizza</h1>
+							</Link>
 						</div>
 					</div>
-				</Link>
+				</div>
+
 				<Search searchValue={searchValue} setSearchValue={setSearchValue} />
 				<Link to="cart">
 					<div className="header__cart">

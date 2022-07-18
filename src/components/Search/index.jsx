@@ -18,7 +18,7 @@ function Search() {
 		} else {
 			setFieldOpen(true)
 		}
-	}, [currentWindowWidth])
+	}, [currentWindowWidth, showSearch])
 
 	return (
 		<div className={onFieldOpen ? [styles.Search, styles.open].join(' ') : styles.Search}>

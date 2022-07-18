@@ -36,6 +36,10 @@
 		@media (min-width: 550px) and (max-width: 670px) {
 			max-width: 230px;
 		}
+		&-wrapper {
+			display: flex;
+			align-items: center;
+		}
 
 		img {
 			margin-right: 15px;
