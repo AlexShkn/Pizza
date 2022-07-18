@@ -1,13 +1,17 @@
 import React from 'react'
 import axios from 'axios'
 
+import { AppContext } from '../App'
+
 import Categories from '../components/Categories'
 import Sort from '../components/Sort'
 import PizzaBlock from '../components/PizzaBlock'
 import Skeleton from '../components/PizzaBlock/Skeleton'
 import Pagination from '../components/Pagination'
 
-function Home({ searchValue }) {
+function Home() {
+	const { searchValue } = React.useContext(AppContext)
+
 	const [catalog, setCatalog] = React.useState([])
 	const [dataIsLoading, setDataIsLoading] = React.useState(true)
 	const [selectedCategory, setSelectedCategory] = React.useState(0)

@@ -1,18 +1,20 @@
 import React from 'react'
 
+import { AppContext } from '../../App'
 import useWindowSize from '../../hooks/useWindowSize'
 
 import styles from './Search.module.scss'
 
-function Search({ searchValue, setSearchValue }) {
+function Search() {
 	const [onFieldOpen, setFieldOpen] = React.useState(false)
+	const { searchValue, setSearchValue } = React.useContext(AppContext)
 
 	const currentWindowWidth = useWindowSize()
-	let searchOnVisible = currentWindowWidth < '550'
+	const showSearch = currentWindowWidth < '550'
 
 	return (
 		<div
-			onClick={searchOnVisible ? () => setFieldOpen(!onFieldOpen) : undefined}
+			onClick={showSearch ? () => setFieldOpen(!onFieldOpen) : undefined}
 			className={styles.Search}>
 			<svg
 				className={styles.Search_icon}
