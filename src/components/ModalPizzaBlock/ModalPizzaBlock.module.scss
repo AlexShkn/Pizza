@@ -1,14 +1,17 @@
+@import '../../scss/variables';
+
 .modal {
 	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 700px;
-	height: 300px;
+	width: 770px;
+	height: 385px;
 	.imageUrl {
-		width: 250px;
-		height: 250px;
+		width: 270px;
+		height: 270px;
 		margin-right: 50px;
+		margin-top: 50px;
 	}
 	div {
 		display: flex;
@@ -24,7 +27,7 @@
 		flex-direction: column;
 		gap: 15px;
 		margin-bottom: 20px;
-		background-color: #f3f3f3;
+		// background-color: #f3f3f3;
 		border-radius: 10px;
 		padding: 20px;
 
@@ -39,14 +42,33 @@
 				}
 				&:not(:first-child) {
 					padding: 5px 15px;
-					border: 1px solid #000;
-					border-radius: 5px;
+					border: 1px solid #fe5f1e;
+					border-radius: 30px;
 					font-size: 14px;
 					cursor: pointer;
+					transition: all 0.3s ease 0s;
+					&:hover {
+						background-color: darken($orange, 8%);
+						color: #fff;
+					}
+				}
+				& .active {
+					background-color: #fe5f1e;
+					color: #fff;
 				}
 			}
 		}
 	}
+
+	.compound {
+		span {
+			font-size: 20px;
+			font-weight: 600;
+		}
+		font-size: 16px;
+		font-weight: 400;
+	}
+
 	.title {
 		font-size: 25px;
 		margin-bottom: 30px;
@@ -105,8 +127,9 @@
 	}
 }
 
-:global {
-	.active {
-		background-color: #fff;
-	}
-}
+// :global {
+// 	.active {
+// 		background-color: #fe5f1e;
+// 		color: #fff;
+// 	}
+// }

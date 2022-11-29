@@ -8,6 +8,7 @@ import CartEmpty from '../components/CartEmpty'
 import clear from '../assets/img/cart-clear.svg'
 
 function Cart({ items }) {
+	console.log(items)
 	return (
 		<div className="container container--cart">
 			<Helmet>

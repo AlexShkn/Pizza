@@ -1,15 +1,21 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import useWindowSize from '../hooks/useWindowSize'
 
-function Categories({ selectedCategory, onChangeCategory }) {
+import { setCategoryId } from '../redux/filter/filterSlice'
+
+function Categories() {
+	const dispatch = useDispatch()
+	const selectedCategory = useSelector(state => state.filter.categoryId)
+
 	const [onOpenCategoryList, setOpenCategoryList] = React.useState(false)
 
 	const currentWindowWidth = useWindowSize()
 	const categoriesList = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
 
 	const updateSelectedCategory = index => {
-		onChangeCategory(index)
+		dispatch(setCategoryId(index))
 		setOpenCategoryList(false)
 	}
 
@@ -20,7 +26,7 @@ function Categories({ selectedCategory, onChangeCategory }) {
 					{categoriesList.map((category, index) => (
 						<li
 							key={index}
-							onClick={() => onChangeCategory(index)}
+							onClick={() => dispatch(setCategoryId(index))}
 							className={selectedCategory === index ? 'active' : ''}>
 							{category}
 						</li>

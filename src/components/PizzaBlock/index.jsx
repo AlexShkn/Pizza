@@ -3,6 +3,8 @@ import Modal from 'react-modal'
 
 import ModalPizzaBlock from '../ModalPizzaBlock'
 
+import { buttonPlus } from '../../assets/svg-icons'
+
 const customStyles = {
 	content: {
 		top: '50%',
@@ -16,6 +18,8 @@ const customStyles = {
 	},
 }
 
+const pizzasTypes = ['тонкое', 'традиционное']
+
 function PizzaBlock(props) {
 	const { imageUrl, title, types, sizes, price, id } = props
 	const [addToCart, setAddToCart] = React.useState(false)
@@ -27,11 +31,9 @@ function PizzaBlock(props) {
 		setAddToCart(!addToCart)
 	}
 
-	function changeStateModal(e) {
+	function changeStateModal() {
 		setIsOpen(!modalIsOpen)
 	}
-
-	const pizzasTypes = ['тонкое', 'традиционное']
 
 	return (
 		<>
@@ -72,21 +74,7 @@ function PizzaBlock(props) {
 							<span>{price}</span> ₽
 						</div>
 						<button className="button button--outline button--add">
-							{!addToCart ? (
-								<svg
-									width="12"
-									height="12"
-									viewBox="0 0 12 12"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg">
-									<path
-										d="M10.8 4.8H7.2V1.2C7.2 0.5373 6.6627 0 6 0C5.3373 0 4.8 0.5373 4.8 1.2V4.8H1.2C0.5373 4.8 0 5.3373 0 6C0 6.6627 0.5373 7.2 1.2 7.2H4.8V10.8C4.8 11.4627 5.3373 12 6 12C6.6627 12 7.2 11.4627 7.2 10.8V7.2H10.8C11.4627 7.2 12 6.6627 12 6C12 5.3373 11.4627 4.8 10.8 4.8Z"
-										fill="white"
-									/>
-								</svg>
-							) : (
-								''
-							)}
+							{!addToCart ? buttonPlus : ''}
 
 							<span onClick={updatePizzaState}>{!addToCart ? 'Добавить' : 'В корзине'}</span>
 							{addToCart ? <i>✔</i> : ''}

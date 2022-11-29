@@ -11,6 +11,8 @@ function ModalPizzaBlock({
 	types,
 	sizes,
 	price,
+	weight,
+	compound,
 	selectedSize,
 	setSelectedSize,
 	selectedType,
@@ -45,6 +47,7 @@ function ModalPizzaBlock({
 									</li>
 								))}
 							</ul>
+
 							<ul>
 								<li>Тесто:</li>
 								{types.map(typeIndex => (
@@ -56,6 +59,25 @@ function ModalPizzaBlock({
 									</li>
 								))}
 							</ul>
+							{weight && (
+								<div>
+									<p className={styles.compound}>
+										<span>Вес: </span>
+										{selectedType === 1
+											? Math.floor(weight[selectedSize] * 1.1)
+											: weight[selectedSize]}{' '}
+										г
+									</p>
+								</div>
+							)}
+							{compound && (
+								<div>
+									<p className={styles.compound}>
+										<span>Состав: </span>
+										{compound}
+									</p>
+								</div>
+							)}
 						</div>
 						<div className={styles.navigate}>
 							<span className={styles.price}>Цена: {price} ₽</span>
