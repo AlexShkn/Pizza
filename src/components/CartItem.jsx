@@ -1,6 +1,18 @@
 import React from 'react'
 
 function CartItem({ imageUrl, title, types, sizes, price }) {
+	const [itemCount, setItemCount] = React.useState(1)
+
+	const changeItemCount = value => {
+		if (value) {
+			setItemCount(itemCount + 1)
+		} else if (itemCount > 1) {
+			setItemCount(itemCount - 1)
+		}
+	}
+
+	const pizzasTypes = ['тонкое', 'традиционное']
+
 	return (
 		<div className="cart__item">
 			<div className="cart__item-img">
@@ -8,15 +20,23 @@ function CartItem({ imageUrl, title, types, sizes, price }) {
 			</div>
 			<div className="cart__item-info">
 				<h3>{title}</h3>
-				<p>{`${types} тесто, ${sizes} см.`}</p>
+				<p>{`${pizzasTypes[types]} тесто, ${sizes} см.`}</p>
 			</div>
 			<div className="cart__item-count">
-				<div className="button button--outline button--circle cart__item-count-minus">-</div>
-				<b>2</b>
-				<div className="button button--outline button--circle cart__item-count-plus">+</div>
+				<div
+					onClick={() => changeItemCount(false)}
+					className="button button--outline button--circle cart__item-count-minus">
+					-
+				</div>
+				<b>{itemCount}</b>
+				<div
+					onClick={() => changeItemCount(true)}
+					className="button button--outline button--circle cart__item-count-plus">
+					+
+				</div>
 			</div>
 			<div className="cart__item-price">
-				<b>{price} ₽</b>
+				<b>{price * itemCount} ₽</b>
 			</div>
 			<div className="cart__item-remove">
 				<div className="button button--outline button--circle">

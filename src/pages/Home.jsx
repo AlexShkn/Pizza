@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
-
-import { AppContext } from '../App'
+import { Helmet } from 'react-helmet'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Categories from '../components/Categories'
 import Sort from '../components/Sort'
@@ -9,14 +9,17 @@ import PizzaBlock from '../components/PizzaBlock'
 import Skeleton from '../components/PizzaBlock/Skeleton'
 import Pagination from '../components/Pagination'
 
-function Home() {
-	const { searchValue } = React.useContext(AppContext)
+import { setCategoryId } from '../redux/filter/filterSlice'
+
+function Home({ searchValue }) {
+	const categoryId = useSelector(state => state.filter.categoryId)
+	const dispatch = useDispatch()
 
 	const [catalog, setCatalog] = React.useState([])
 	const [dataIsLoading, setDataIsLoading] = React.useState(true)
-	const [selectedCategory, setSelectedCategory] = React.useState(0)
 	const [currentPage, setCurrentPage] = React.useState(1)
 	const [pizzasAmount, setPizzasAmount] = React.useState(1)
+	// const [selectedCategory, setSelectedCategory] = React.useState(0)
 	const [sortSelectedType, setSortSelectedType] = React.useState({
 		name: 'цене(ASC)',
 		sortProperty: '-price',
@@ -30,7 +33,7 @@ function Home() {
 			setDataIsLoading(true)
 
 			const dataUrl = 'https://62b1cf3920cad3685c837f0e.mockapi.io'
-			const category = selectedCategory > 0 ? `category=${selectedCategory}` : ''
+			const category = categoryId > 0 ? `category=${categoryId}` : ''
 			const sortBy = sortSelectedType.sortProperty.replace('-', '')
 			const order = sortSelectedType.sortProperty.includes('-') ? 'asc' : 'desc'
 			const search = searchValue ? `&search=${searchValue}` : ''
@@ -50,14 +53,19 @@ function Home() {
 		}
 		fetchData()
 		// window.scrollTo(0, 0)
-	}, [selectedCategory, sortSelectedType, searchValue, currentPage])
+	}, [categoryId, sortSelectedType, searchValue, currentPage])
 
 	return (
 		<>
+			<Helmet>
+				<meta name="description" content="Home page" />
+				<title>Главная</title>
+			</Helmet>
+
 			<div className="content__top">
 				<Categories
-					selectedCategory={selectedCategory}
-					onChangeCategory={index => setSelectedCategory(index)}
+					selectedCategory={categoryId}
+					onChangeCategory={index => dispatch(setCategoryId(index))}
 				/>
 				<Sort
 					sortSelectedType={sortSelectedType}

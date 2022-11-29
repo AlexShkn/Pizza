@@ -1,13 +1,11 @@
 import React from 'react'
 
-import { AppContext } from '../../App'
 import useWindowSize from '../../hooks/useWindowSize'
 
 import styles from './Search.module.scss'
 
-function Search() {
+function Search({ searchValue, setSearchValue }) {
 	const [onFieldOpen, setFieldOpen] = React.useState(true)
-	const { searchValue, setSearchValue } = React.useContext(AppContext)
 
 	const currentWindowWidth = useWindowSize()
 	const showSearch = currentWindowWidth < '1000'

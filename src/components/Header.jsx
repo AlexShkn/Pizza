@@ -1,12 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
-import cart from '../assets/img/cart.svg'
 import Search from './Search'
 
 import logotype from '../assets/img/pizza-logo1.svg'
+import cart from '../assets/img/cart.svg'
 
 function Header({ searchValue, setSearchValue }) {
+	const location = useLocation()
+
 	return (
 		<div className="header">
 			<div className="container">
@@ -22,20 +24,23 @@ function Header({ searchValue, setSearchValue }) {
 						</div>
 					</div>
 				</div>
-
-				<Search searchValue={searchValue} setSearchValue={setSearchValue} />
-				<Link to="cart">
+				{location.pathname === '/' && (
+					<Search searchValue={searchValue} setSearchValue={setSearchValue} />
+				)}
+				{location.pathname !== '/cart' && (
 					<div className="header__cart">
-						<button className="button button--cart">
-							<span>520 ₽</span>
-							<div className="button__delimiter"></div>
-							<div className="button__cart">
-								<img src={cart} alt="" />
-								<span>3</span>
-							</div>
-						</button>
+						<Link to="cart">
+							<button className="button button--cart">
+								<span>520 ₽</span>
+								<div className="button__delimiter"></div>
+								<div className="button__cart">
+									<img src={cart} alt="" />
+									<span>3</span>
+								</div>
+							</button>
+						</Link>
 					</div>
-				</Link>
+				)}
 			</div>
 		</div>
 	)
