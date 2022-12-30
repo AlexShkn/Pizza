@@ -11,7 +11,7 @@ import CartEmpty from '../components/CartEmpty'
 import clear from '../assets/img/cart-clear.svg'
 import { cart } from '../assets/svg-icons'
 
-function Cart() {
+function CartPage() {
 	const dispatch = useDispatch()
 	const { items, totalPrice } = useSelector(state => state.cart)
 
@@ -67,4 +67,4 @@ function Cart() {
 	)
 }
 
-export default Cart
+export default CartPage

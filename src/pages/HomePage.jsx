@@ -13,7 +13,7 @@ import PizzaBlock from '../components/PizzaBlock'
 import Skeleton from '../components/PizzaBlock/Skeleton'
 import Pagination from '../components/Pagination'
 
-function Home() {
+function HomePage() {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
@@ -79,4 +79,4 @@ function Home() {
 	)
 }
 
-export default Home
+export default HomePage

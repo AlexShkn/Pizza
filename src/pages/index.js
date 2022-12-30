@@ -1,5 +1,7 @@
-import Cart from './Cart'
-import Home from './Home'
+import CartPage from './CartPage'
+import HomePage from './HomePage'
 import NotFound from './NotFound'
+import LoginPage from './LoginPage'
+import RegisterPage from './RegisterPage'
 
-export { Cart, Home, NotFound }
+export { CartPage, HomePage, NotFound, LoginPage, RegisterPage }

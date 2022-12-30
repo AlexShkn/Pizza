@@ -5,6 +5,7 @@ import { store } from './redux/store'
 import Modal from 'react-modal'
 
 import App from './App'
+import './firebase'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 Modal.setAppElement('#root')

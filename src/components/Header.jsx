@@ -1,13 +1,19 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useAuth } from '../hooks/useAuth'
+import { removeUser } from '../redux/slices/userSlice'
 
 import Search from './Search'
 
 import logotype from '../assets/img/pizza-logo1.svg'
 import cart from '../assets/img/cart.svg'
+import profile from '../assets/img/profile.svg'
+import exit from '../assets/img/exit.svg'
 
 function Header() {
+	const dispatch = useDispatch()
+	const { isAuth } = useAuth()
 	const location = useLocation()
 	const { totalPrice, items } = useSelector(state => state.cart)
 
@@ -27,6 +33,24 @@ function Header() {
 					</div>
 				</div>
 				{location.pathname === '/' && <Search />}
+
+				{!isAuth ? (
+					<Link to="/login">
+						<div className="header__profile">
+							<img src={profile} alt="" />
+						</div>
+					</Link>
+				) : (
+					<div>
+						<img
+							style={{ display: 'block', cursor: 'pointer' }}
+							src={exit}
+							alt="Выйти"
+							onClick={() => dispatch(removeUser())}
+						/>
+					</div>
+				)}
+
 				{location.pathname !== '/cart' && (
 					<div className="header__cart">
 						<Link to="cart">
