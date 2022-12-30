@@ -1,7 +1,11 @@
 import React from 'react'
 import axios from 'axios'
 import { Helmet } from 'react-helmet'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import qs from 'qs'
+
+import { setPizzasAmount } from '../redux/slices/filterSlice'
 
 import Categories from '../components/Categories'
 import Sort from '../components/Sort'
@@ -9,16 +13,14 @@ import PizzaBlock from '../components/PizzaBlock'
 import Skeleton from '../components/PizzaBlock/Skeleton'
 import Pagination from '../components/Pagination'
 
-function Home({ searchValue }) {
-	const { categoryId, sort } = useSelector(state => state.filter)
+function Home() {
+	const navigate = useNavigate()
+	const dispatch = useDispatch()
+
+	const { categoryId, sort, currentPage, searchValue } = useSelector(state => state.filter)
 
 	const [catalog, setCatalog] = React.useState([])
 	const [dataIsLoading, setDataIsLoading] = React.useState(true)
-	const [currentPage, setCurrentPage] = React.useState(1)
-	const [pizzasAmount, setPizzasAmount] = React.useState(1)
-
-	const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-	const pizzasList = catalog.map(item => <PizzaBlock key={item.id} {...item} />)
 
 	React.useEffect(() => {
 		async function fetchData() {
@@ -37,7 +39,7 @@ function Home({ searchValue }) {
 					`${dataUrl}/pizzas?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`,
 				)
 				setCatalog(itemsResponse.data)
-				setPizzasAmount(pizzasResponse.data.length)
+				dispatch(setPizzasAmount(pizzasResponse.data.length))
 				setDataIsLoading(false)
 			} catch (error) {
 				alert('Не удалось сделать запрос данных')
@@ -46,6 +48,19 @@ function Home({ searchValue }) {
 		fetchData()
 		// window.scrollTo(0, 0)
 	}, [categoryId, sort, searchValue, currentPage])
+
+	React.useEffect(() => {
+		const params = {
+			categoryId: categoryId > 0 ? categoryId : null,
+			currentPage: currentPage === 1 ? null : currentPage,
+			sort,
+		}
+		const queryString = qs.stringify(params, { skipNulls: true })
+		navigate(`/?${queryString}`)
+	}, [categoryId, sort, currentPage])
+
+	const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />)
+	const pizzasList = catalog.map(item => <PizzaBlock key={item.id} {...item} />)
 
 	return (
 		<>
@@ -59,7 +74,7 @@ function Home({ searchValue }) {
 			</div>
 			<h2 className="content__title">Все пиццы</h2>
 			<div className="content__items">{dataIsLoading ? skeleton : pizzasList}</div>
-			<Pagination pizzasAmount={pizzasAmount} onChangePage={number => setCurrentPage(number)} />
+			<Pagination />
 		</>
 	)
 }

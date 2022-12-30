@@ -1,21 +1,41 @@
 import React from 'react'
-
+import { useDispatch, useSelector } from 'react-redux'
+import debounce from 'lodash.debounce'
 import useWindowSize from '../../hooks/useWindowSize'
+import { setSearchInputValue, setSearchValue } from '../../redux/slices/filterSlice'
 
 import styles from './Search.module.scss'
 
-function Search({ searchValue, setSearchValue }) {
+function Search() {
+	const dispatch = useDispatch()
+	const searchInputValue = useSelector(state => state.filter.searchInputValue)
+
 	const [onFieldOpen, setFieldOpen] = React.useState(true)
 
+	const inputRef = React.useRef()
 	const currentWindowWidth = useWindowSize()
 	const showSearch = currentWindowWidth < '1000'
 
+	const inputFieldClear = () => {
+		dispatch(setSearchValue(''))
+		dispatch(setSearchInputValue(''))
+		inputRef.current?.focus()
+	}
+
+	const updateSearchValue = React.useCallback(
+		debounce(value => {
+			dispatch(setSearchValue(value))
+		}, 300),
+		[],
+	)
+
+	const onChangeInput = e => {
+		dispatch(setSearchInputValue(e.target.value))
+		updateSearchValue(e.target.value)
+	}
+
 	React.useEffect(() => {
-		if (showSearch) {
-			setFieldOpen(false)
-		} else {
-			setFieldOpen(true)
-		}
+		showSearch ? setFieldOpen(false) : setFieldOpen(true)
 	}, [currentWindowWidth, showSearch])
 
 	return (
@@ -54,12 +74,13 @@ function Search({ searchValue, setSearchValue }) {
 			</svg>
 			<div>
 				<input
-					value={searchValue}
-					onChange={e => setSearchValue(e.target.value)}
+					ref={inputRef}
+					value={searchInputValue}
+					onChange={onChangeInput}
 					placeholder="Поиск пиццы..."
 				/>
-				{searchValue && (
-					<span className={styles.closed} onClick={() => setSearchValue('')}>
+				{searchInputValue && (
+					<span className={styles.closed} onClick={() => inputFieldClear()}>
 						+
 					</span>
 				)}

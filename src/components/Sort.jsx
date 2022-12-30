@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setSortType } from '../redux/filter/filterSlice'
+import { setSortType } from '../redux/slices/filterSlice'
 
 import { sortTriangle } from '../assets/svg-icons'
 
@@ -16,6 +16,7 @@ const sortNamesList = [
 function Sort() {
 	const dispatch = useDispatch()
 	const sortType = useSelector(state => state.filter.sort)
+	const sortRef = React.useRef()
 
 	const [onOpenSortList, setOpenSortList] = React.useState(false)
 
@@ -24,8 +25,18 @@ function Sort() {
 		setOpenSortList(false)
 	}
 
+	React.useEffect(() => {
+		const handleClickOutside = e => {
+			if (!e.path.includes(sortRef.current)) {
+				setOpenSortList(false)
+			}
+		}
+		document.body.addEventListener('click', handleClickOutside)
+		return () => document.body.removeEventListener('click', handleClickOutside)
+	}, [])
+
 	return (
-		<div className="sort">
+		<div ref={sortRef} className="sort">
 			<div className="sort__label">
 				<svg
 					className={onOpenSortList ? 'open' : ''}

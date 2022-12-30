@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import Search from './Search'
 
 import logotype from '../assets/img/pizza-logo1.svg'
 import cart from '../assets/img/cart.svg'
 
-function Header({ searchValue, setSearchValue }) {
+function Header() {
 	const location = useLocation()
+	const { totalPrice, items } = useSelector(state => state.cart)
 
 	return (
 		<div className="header">
@@ -24,18 +26,16 @@ function Header({ searchValue, setSearchValue }) {
 						</div>
 					</div>
 				</div>
-				{location.pathname === '/' && (
-					<Search searchValue={searchValue} setSearchValue={setSearchValue} />
-				)}
+				{location.pathname === '/' && <Search />}
 				{location.pathname !== '/cart' && (
 					<div className="header__cart">
 						<Link to="cart">
 							<button className="button button--cart">
-								<span>520 ₽</span>
+								<span>{totalPrice} ₽</span>
 								<div className="button__delimiter"></div>
 								<div className="button__cart">
 									<img src={cart} alt="" />
-									<span>3</span>
+									<span>{items.length}</span>
 								</div>
 							</button>
 						</Link>
@@ -46,4 +46,4 @@ function Header({ searchValue, setSearchValue }) {
 	)
 }
 
-export default Header
+export default React.memo(Header)

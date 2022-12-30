@@ -1,6 +1,9 @@
 import React from 'react'
 import Modal from 'react-modal'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { addItem, removeItem } from '../../redux/slices/cartSlice'
+
 import ModalPizzaBlock from '../ModalPizzaBlock'
 
 import { buttonPlus } from '../../assets/svg-icons'
@@ -22,17 +25,25 @@ const pizzasTypes = ['тонкое', 'традиционное']
 
 function PizzaBlock(props) {
 	const { imageUrl, title, types, sizes, price, id } = props
-	const [addToCart, setAddToCart] = React.useState(false)
+
+	const dispatch = useDispatch()
+	const { items } = useSelector(state => state.cart)
+	const isAddedToCart = items.find(obj => obj.id === id)
+
 	const [selectedType, setSelectedType] = React.useState(0)
 	const [selectedSize, setSelectedSize] = React.useState(0)
 	const [modalIsOpen, setIsOpen] = React.useState(false)
 
-	const updatePizzaState = () => {
-		setAddToCart(!addToCart)
-	}
-
-	function changeStateModal() {
-		setIsOpen(!modalIsOpen)
+	const onClickAdd = () => {
+		const item = {
+			id,
+			title,
+			type: selectedType,
+			size: selectedSize,
+			imageUrl,
+			price,
+		}
+		isAddedToCart ? dispatch(removeItem(id)) : dispatch(addItem(item))
 	}
 
 	return (
@@ -44,9 +55,11 @@ function PizzaBlock(props) {
 						className="pizza-block__image"
 						src={imageUrl}
 						alt="Pizza"
-						onClick={changeStateModal}
+						onClick={() => setIsOpen(!modalIsOpen)}
 					/>
-					<h4 className="pizza-block__title">{title}</h4>
+					<h4 onClick={() => setIsOpen(!modalIsOpen)} className="pizza-block__title">
+						{title}
+					</h4>
 					<div className="pizza-block__selector">
 						<ul>
 							{types.map(typeIndex => (
@@ -73,24 +86,29 @@ function PizzaBlock(props) {
 						<div className="pizza-block__price">
 							<span>{price}</span> ₽
 						</div>
-						<button className="button button--outline button--add">
-							{!addToCart ? buttonPlus : ''}
+						<button onClick={() => onClickAdd()} className="button button--outline button--add">
+							{!isAddedToCart ? buttonPlus : ''}
 
-							<span onClick={updatePizzaState}>{!addToCart ? 'Добавить' : 'В корзине'}</span>
-							{addToCart ? <i>✔</i> : ''}
+							<span>{!isAddedToCart ? 'Добавить' : 'В корзине'}</span>
+							{isAddedToCart ? <i>✔</i> : ''}
 						</button>
 					</div>
 				</div>
 			</div>
-			<Modal isOpen={modalIsOpen} onRequestClose={changeStateModal} style={customStyles}>
+			<Modal
+				isOpen={modalIsOpen}
+				onRequestClose={() => setIsOpen(!modalIsOpen)}
+				style={customStyles}>
 				<ModalPizzaBlock
-					changeStateModal={changeStateModal}
 					modalIsOpen={modalIsOpen}
+					onClickAdd={onClickAdd}
+					setIsOpen={setIsOpen}
 					selectedSize={selectedSize}
 					setSelectedSize={setSelectedSize}
 					selectedType={selectedType}
 					setSelectedType={setSelectedType}
 					pizzasTypes={pizzasTypes}
+					isAddedToCart={isAddedToCart}
 					{...props}
 				/>
 			</Modal>

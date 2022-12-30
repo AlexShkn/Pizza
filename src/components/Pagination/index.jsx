@@ -1,9 +1,15 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { setCurrentPage } from '../../redux/slices/filterSlice'
 
 import styles from './Pagination.module.scss'
 
-function Pagination({ pizzasAmount, onChangePage }) {
+function Pagination() {
+	const dispatch = useDispatch()
+
+	const pizzasAmount = useSelector(state => state.filter.pizzasAmount)
 	const pageCount = Math.round(pizzasAmount / 4)
 
 	return (
@@ -12,7 +18,7 @@ function Pagination({ pizzasAmount, onChangePage }) {
 			breakLabel="..."
 			nextLabel=">"
 			previousLabel="<"
-			onPageChange={e => onChangePage(e.selected + 1)}
+			onPageChange={e => dispatch(setCurrentPage(e.selected + 1))}
 			pageRangeDisplayed={4}
 			pageCount={pageCount || pageCount + 1}
 			renderOnZeroPageCount={null}
