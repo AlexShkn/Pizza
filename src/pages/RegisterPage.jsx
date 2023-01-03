@@ -5,12 +5,13 @@ import SignUp from '../components/authorization/SignUp'
 function RegisterPage() {
 	return (
 		<div>
-			<h1>Register</h1>
 			<SignUp />
-			<p>
-				Already ha an account? <Link to="/login">Sign</Link>
+			<p style={{ fontSize: '20px' }}>
+				У Вас уже есть аккаунт?{' '}
+				<Link to="/login">
+					<span style={{ color: '#1a73e8' }}> Войти</span>
+				</Link>
 			</p>
-			<Link to="/">На главную</Link>
 		</div>
 	)
 }

@@ -6,10 +6,12 @@ import Login from '../components/authorization/Login'
 function LoginPage() {
 	return (
 		<div>
-			<h1>Login</h1>
 			<Login />
-			<p>
-				Or <Link to="/register">register</Link>
+			<p style={{ fontSize: '20px' }}>
+				Или
+				<Link to="/register">
+					<span style={{ color: '#1a73e8' }}> зарегистрироваться</span>
+				</Link>
 			</p>
 		</div>
 	)

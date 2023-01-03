@@ -1,3 +1,4 @@
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 
@@ -6,6 +7,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import Form from './Form'
 
 function Login() {
+	const [error, setError] = React.useState()
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
@@ -23,10 +25,16 @@ function Login() {
 				)
 				navigate('/')
 			})
-			.catch(() => alert('Пользователь не существует'))
+			.catch(() => setError('Пользователя не существует'))
 	}
 
-	return <Form title="sign in" handleClick={handleLogin}></Form>
+	return (
+		<Form
+			button="Войти"
+			title="Введите email и пароль"
+			handleClick={handleLogin}
+			error={error}></Form>
+	)
 }
 
 export default Login
