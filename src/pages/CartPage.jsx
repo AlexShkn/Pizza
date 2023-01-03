@@ -18,7 +18,6 @@ function CartPage() {
 	const itemsCount = items.reduce((sum, obj) => {
 		return obj.count + sum
 	}, 0)
-	console.log(items)
 
 	return (
 		<div className="container container--cart">

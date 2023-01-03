@@ -7,31 +7,16 @@ import { itemRemove } from '../assets/svg-icons'
 function CartItem({ imageUrl, title, type, size, price, id }) {
 	const dispatch = useDispatch()
 	const { items } = useSelector(state => state.cart)
-	const [itemCount, setItemCount] = React.useState(1)
 
 	const currentItem = items.find(obj => obj.id === id)
 
 	const changeItemCount = value => {
 		if (value) {
 			dispatch(addItem({ id }))
-
-			setItemCount(itemCount + 1)
-		} else if (itemCount > 1) {
+		} else if (currentItem.count > 1) {
 			dispatch(minusItem(id))
-
-			setItemCount(itemCount - 1)
 		}
 	}
-
-	// const onClickPlus = () => {
-	// 	dispatch(addItem({ id }))
-	// 	setItemCount(itemCount + 1)
-	// }
-
-	// const onClickMinus = () => {
-	// 	dispatch(minusItem(id))
-	// 	setItemCount(itemCount - 1)
-	// }
 
 	const pizzasTypes = ['тонкое', 'традиционное']
 	const pizzaSizes = [26, 30, 40]
@@ -49,7 +34,7 @@ function CartItem({ imageUrl, title, type, size, price, id }) {
 				<div
 					onClick={() => changeItemCount(false)}
 					className="button button--outline button--circle cart__item-count-minus"
-					disabled={itemCount === 1}>
+					disabled={currentItem.count === 1}>
 					-
 				</div>
 				<b>{currentItem.count}</b>
