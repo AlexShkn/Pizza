@@ -15,9 +15,10 @@ function CartPage() {
 	const dispatch = useDispatch()
 	const { items, totalPrice } = useSelector(state => state.cart)
 
-	const totalCount = items.reduce((sum, item) => sum + item.count, 0)
-
-	console.log(totalCount)
+	const itemsCount = items.reduce((sum, obj) => {
+		return obj.count + sum
+	}, 0)
+	console.log(items)
 
 	return (
 		<div className="container container--cart">
@@ -42,7 +43,7 @@ function CartPage() {
 					<div className="cart__bottom">
 						<div className="cart__bottom-details">
 							<span>
-								Всего пицц: <b>{items.length} шт.</b>
+								Всего пицц: <b>{itemsCount} шт.</b>
 							</span>
 							<span>
 								Сумма заказа: <b>{totalPrice} ₽</b>

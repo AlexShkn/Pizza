@@ -17,6 +17,10 @@ function Header() {
 	const location = useLocation()
 	const { totalPrice, items } = useSelector(state => state.cart)
 
+	const itemsCount = items.reduce((sum, obj) => {
+		return obj.count + sum
+	}, 0)
+
 	return (
 		<div className="header">
 			<div className="container">
@@ -59,7 +63,7 @@ function Header() {
 								<div className="button__delimiter"></div>
 								<div className="button__cart">
 									<img src={cart} alt="" />
-									<span>{items.length}</span>
+									<span>{itemsCount}</span>
 								</div>
 							</button>
 						</Link>

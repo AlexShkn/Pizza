@@ -1,28 +1,37 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addItem, removeItem, minusItem } from '../redux/slices/cartSlice'
 
 import { itemRemove } from '../assets/svg-icons'
 
 function CartItem({ imageUrl, title, type, size, price, id }) {
 	const dispatch = useDispatch()
+	const { items } = useSelector(state => state.cart)
 	const [itemCount, setItemCount] = React.useState(1)
 
-	// const changeItemCount = value => {
-	// 	if (value) {
-	// 		setItemCount(itemCount + 1)
-	// 	} else if (itemCount > 1) {
-	// 		setItemCount(itemCount - 1)
-	// 	}
+	const currentItem = items.find(obj => obj.id === id)
+
+	const changeItemCount = value => {
+		if (value) {
+			dispatch(addItem({ id }))
+
+			setItemCount(itemCount + 1)
+		} else if (itemCount > 1) {
+			dispatch(minusItem(id))
+
+			setItemCount(itemCount - 1)
+		}
+	}
+
+	// const onClickPlus = () => {
+	// 	dispatch(addItem({ id }))
+	// 	setItemCount(itemCount + 1)
 	// }
 
-	const onClickPlus = () => {
-		dispatch(addItem({ id }))
-	}
-
-	const onClickMinus = () => {
-		dispatch(minusItem(id))
-	}
+	// const onClickMinus = () => {
+	// 	dispatch(minusItem(id))
+	// 	setItemCount(itemCount - 1)
+	// }
 
 	const pizzasTypes = ['тонкое', 'традиционное']
 	const pizzaSizes = [26, 30, 40]
@@ -38,22 +47,20 @@ function CartItem({ imageUrl, title, type, size, price, id }) {
 			</div>
 			<div className="cart__item-count">
 				<div
-					// onClick={() => changeItemCount(false)}
-					onClick={onClickMinus}
+					onClick={() => changeItemCount(false)}
 					className="button button--outline button--circle cart__item-count-minus"
 					disabled={itemCount === 1}>
 					-
 				</div>
-				<b>{itemCount}</b>
+				<b>{currentItem.count}</b>
 				<div
-					// onClick={() => changeItemCount(true)}
-					onClick={onClickPlus}
+					onClick={() => changeItemCount(true)}
 					className="button button--outline button--circle cart__item-count-plus">
 					+
 				</div>
 			</div>
 			<div className="cart__item-price">
-				<b>{price * itemCount} ₽</b>
+				<b>{price * currentItem.count} ₽</b>
 			</div>
 			<div className="cart__item-remove">
 				<div
