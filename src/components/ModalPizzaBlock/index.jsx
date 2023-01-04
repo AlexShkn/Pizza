@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import styles from './ModalPizzaBlock.module.scss'
 
@@ -13,11 +14,30 @@ function ModalPizzaBlock(props) {
 		setSelectedSize,
 		selectedType,
 		setSelectedType,
-		pizzasTypes,
 		isAddedToCart,
 	} = props
 
 	const { imageUrl, title, types, sizes, finalPrice, weight, compound } = props
+
+	const { pizzasTypes } = useSelector(state => state.cart)
+	let currentWeight = ''
+
+	if (weight) {
+		switch (selectedSize) {
+			case 26:
+				currentWeight = weight[0]
+				break
+			case 30:
+				currentWeight = weight[1]
+				break
+			case 40:
+				currentWeight = weight[2]
+				break
+			default:
+				currentWeight = weight
+				break
+		}
+	}
 
 	return (
 		<div className={styles.modal}>
@@ -56,10 +76,7 @@ function ModalPizzaBlock(props) {
 							<div>
 								<p className={styles.compound}>
 									<span>Вес: </span>
-									{selectedType === 1
-										? Math.floor(weight[selectedSize] * 1.1)
-										: weight[selectedSize]}
-									г
+									{selectedType === 1 ? Math.floor(currentWeight * 1.3) : currentWeight}г
 								</p>
 							</div>
 						)}

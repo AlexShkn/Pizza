@@ -6,6 +6,7 @@ import './form.scss'
 function Form({ title, handleClick, button, error }) {
 	const [email, setEmail] = React.useState('')
 	const [pass, setPass] = React.useState('')
+
 	const {
 		register,
 		formState: { errors, isValid },

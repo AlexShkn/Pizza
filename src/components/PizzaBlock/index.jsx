@@ -23,7 +23,7 @@ const customStyles = {
 }
 
 function PizzaBlock(props) {
-	const { imageUrl, title, types, sizes, price, id } = props
+	const { imageUrl, title, types, sizes, price, id, compound, weight } = props
 
 	const dispatch = useDispatch()
 	const { items, pizzasTypes } = useSelector(state => state.cart)
@@ -36,19 +36,21 @@ function PizzaBlock(props) {
 	const isAddedToCart = items.find(obj => obj.itemId === itemId)
 	let finalPrice = 0
 
-	switch (selectedSize) {
-		case 26:
-			finalPrice = price
-			break
-		case 30:
-			finalPrice = Math.floor(price * 1.3)
-			break
-		case 40:
-			finalPrice = Math.floor(price * 2)
-			break
-		default:
-			finalPrice = price
-			break
+	if (price) {
+		switch (selectedSize) {
+			case 26:
+				finalPrice = price
+				break
+			case 30:
+				finalPrice = Math.floor(price * 1.3)
+				break
+			case 40:
+				finalPrice = Math.floor(price * 2)
+				break
+			default:
+				finalPrice = price
+				break
+		}
 	}
 
 	const onClickAdd = () => {
@@ -60,6 +62,8 @@ function PizzaBlock(props) {
 			size: selectedSize,
 			imageUrl,
 			price: finalPrice,
+			compound,
+			weight,
 		}
 
 		isAddedToCart ? dispatch(removeItem(item.itemId)) : dispatch(addItem(item))
@@ -80,12 +84,12 @@ function PizzaBlock(props) {
 					</h4>
 					<div className="pizza-block__selector">
 						<ul>
-							{types.map(typeIndex => (
+							{types.map(type => (
 								<li
-									key={typeIndex}
-									onClick={() => setSelectedType(typeIndex)}
-									className={selectedType === typeIndex ? 'active' : ''}>
-									{pizzasTypes[typeIndex]}
+									key={type}
+									onClick={() => setSelectedType(type)}
+									className={selectedType === type ? 'active' : ''}>
+									{pizzasTypes[type]}
 								</li>
 							))}
 						</ul>
@@ -124,9 +128,9 @@ function PizzaBlock(props) {
 					setSelectedSize={setSelectedSize}
 					selectedType={selectedType}
 					setSelectedType={setSelectedType}
-					pizzasTypes={pizzasTypes}
 					isAddedToCart={isAddedToCart}
 					finalPrice={finalPrice}
+					weight={weight}
 					{...props}
 				/>
 			</Modal>
