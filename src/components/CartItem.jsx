@@ -1,25 +1,24 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem, removeItem, minusItem } from '../redux/slices/cartSlice'
+import { createUniqItemId } from '../utils/createUniqItemId'
 
 import { itemRemove } from '../assets/svg-icons'
 
 function CartItem({ imageUrl, title, type, size, price, id }) {
 	const dispatch = useDispatch()
-	const { items } = useSelector(state => state.cart)
+	const { items, pizzasTypes } = useSelector(state => state.cart)
 
-	const currentItem = items.find(obj => obj.id === id)
+	const itemId = createUniqItemId(id, type, size)
+	const currentItem = items.find(obj => obj.itemId === itemId)
 
 	const changeItemCount = value => {
 		if (value) {
-			dispatch(addItem({ id }))
+			dispatch(addItem(currentItem))
 		} else if (currentItem.count > 1) {
-			dispatch(minusItem(id))
+			dispatch(minusItem(itemId))
 		}
 	}
-
-	const pizzasTypes = ['тонкое', 'традиционное']
-	const pizzaSizes = [26, 30, 40]
 
 	return (
 		<div className="cart__item">
@@ -28,7 +27,7 @@ function CartItem({ imageUrl, title, type, size, price, id }) {
 			</div>
 			<div className="cart__item-info">
 				<h3>{title}</h3>
-				<p>{`${pizzasTypes[type]} тесто, ${pizzaSizes[size]} см.`}</p>
+				<p>{`${pizzasTypes[type]} тесто, ${size} см.`}</p>
 			</div>
 			<div className="cart__item-count">
 				<div
@@ -49,7 +48,7 @@ function CartItem({ imageUrl, title, type, size, price, id }) {
 			</div>
 			<div className="cart__item-remove">
 				<div
-					onClick={() => dispatch(removeItem(id))}
+					onClick={() => dispatch(removeItem(itemId))}
 					className="button button--outline button--circle">
 					{itemRemove}
 				</div>

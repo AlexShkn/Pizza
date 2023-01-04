@@ -12,14 +12,11 @@ import profile from '../assets/img/profile.svg'
 import exit from '../assets/img/exit.svg'
 
 function Header() {
-	const dispatch = useDispatch()
 	const { isAuth } = useAuth()
 	const location = useLocation()
-	const { totalPrice, items } = useSelector(state => state.cart)
 
-	const itemsCount = items.reduce((sum, obj) => {
-		return obj.count + sum
-	}, 0)
+	const dispatch = useDispatch()
+	const { totalPrice, totalCount } = useSelector(state => state.cart)
 
 	return (
 		<div className="header">
@@ -63,7 +60,7 @@ function Header() {
 								<div className="button__delimiter"></div>
 								<div className="button__cart">
 									<img src={cart} alt="" />
-									<span>{itemsCount}</span>
+									<span>{totalCount}</span>
 								</div>
 							</button>
 						</Link>

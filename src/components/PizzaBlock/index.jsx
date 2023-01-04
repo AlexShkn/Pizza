@@ -3,6 +3,7 @@ import Modal from 'react-modal'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem, removeItem } from '../../redux/slices/cartSlice'
+import { createUniqItemId } from '../../utils/createUniqItemId'
 
 import ModalPizzaBlock from '../ModalPizzaBlock'
 
@@ -21,29 +22,47 @@ const customStyles = {
 	},
 }
 
-const pizzasTypes = ['тонкое', 'традиционное']
-
 function PizzaBlock(props) {
 	const { imageUrl, title, types, sizes, price, id } = props
 
 	const dispatch = useDispatch()
-	const { items } = useSelector(state => state.cart)
-	const isAddedToCart = items.find(obj => obj.id === id)
+	const { items, pizzasTypes } = useSelector(state => state.cart)
 
-	const [selectedType, setSelectedType] = React.useState(0)
-	const [selectedSize, setSelectedSize] = React.useState(0)
+	const [selectedType, setSelectedType] = React.useState(types[0] || 0)
+	const [selectedSize, setSelectedSize] = React.useState(sizes[0] || 0)
 	const [modalIsOpen, setIsOpen] = React.useState(false)
+
+	const itemId = createUniqItemId(id, selectedType, selectedSize)
+	const isAddedToCart = items.find(obj => obj.itemId === itemId)
+	let finalPrice = 0
+
+	switch (selectedSize) {
+		case 26:
+			finalPrice = price
+			break
+		case 30:
+			finalPrice = Math.floor(price * 1.3)
+			break
+		case 40:
+			finalPrice = Math.floor(price * 2)
+			break
+		default:
+			finalPrice = price
+			break
+	}
 
 	const onClickAdd = () => {
 		const item = {
 			id,
 			title,
+			itemId,
 			type: selectedType,
 			size: selectedSize,
 			imageUrl,
-			price,
+			price: finalPrice,
 		}
-		isAddedToCart ? dispatch(removeItem(id)) : dispatch(addItem(item))
+
+		isAddedToCart ? dispatch(removeItem(item.itemId)) : dispatch(addItem(item))
 	}
 
 	return (
@@ -51,7 +70,6 @@ function PizzaBlock(props) {
 			<div className="pizza-block-wrapper">
 				<div className="pizza-block">
 					<img
-						id={id}
 						className="pizza-block__image"
 						src={imageUrl}
 						alt="Pizza"
@@ -75,8 +93,8 @@ function PizzaBlock(props) {
 							{sizes.map((size, index) => (
 								<li
 									key={index}
-									onClick={() => setSelectedSize(index)}
-									className={selectedSize === index ? 'active' : ''}>
+									onClick={() => setSelectedSize(size)}
+									className={selectedSize === size ? 'active' : ''}>
 									{size} см.
 								</li>
 							))}
@@ -84,11 +102,10 @@ function PizzaBlock(props) {
 					</div>
 					<div className="pizza-block__bottom">
 						<div className="pizza-block__price">
-							<span>{price}</span> ₽
+							<span>{finalPrice}</span> ₽
 						</div>
 						<button onClick={() => onClickAdd()} className="button button--outline button--add">
 							{!isAddedToCart ? buttonPlus : ''}
-
 							<span>{!isAddedToCart ? 'Добавить' : 'В корзине'}</span>
 							{isAddedToCart ? <i>✔</i> : ''}
 						</button>
@@ -109,6 +126,7 @@ function PizzaBlock(props) {
 					setSelectedType={setSelectedType}
 					pizzasTypes={pizzasTypes}
 					isAddedToCart={isAddedToCart}
+					finalPrice={finalPrice}
 					{...props}
 				/>
 			</Modal>

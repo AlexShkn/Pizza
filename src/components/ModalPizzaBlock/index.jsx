@@ -17,7 +17,7 @@ function ModalPizzaBlock(props) {
 		isAddedToCart,
 	} = props
 
-	const { imageUrl, title, types, sizes, price, weight, compound } = props
+	const { imageUrl, title, types, sizes, finalPrice, weight, compound } = props
 
 	return (
 		<div className={styles.modal}>
@@ -34,8 +34,8 @@ function ModalPizzaBlock(props) {
 							{sizes.map((size, index) => (
 								<li
 									key={index}
-									onClick={() => setSelectedSize(index)}
-									className={selectedSize === index ? 'active-option' : ''}>
+									onClick={() => setSelectedSize(size)}
+									className={selectedSize === size ? 'active-option' : ''}>
 									{size} см.
 								</li>
 							))}
@@ -73,7 +73,7 @@ function ModalPizzaBlock(props) {
 						)}
 					</div>
 					<div className={styles.navigate}>
-						<span className={styles.price}>Цена: {price} ₽</span>
+						<span className={styles.price}>Цена: {finalPrice} ₽</span>
 						<button onClick={() => onClickAdd()} className="button button--outline button--add">
 							{!isAddedToCart ? buttonPlus : ''}
 							<span>{!isAddedToCart ? 'Добавить в корзину' : 'В корзине'}</span>

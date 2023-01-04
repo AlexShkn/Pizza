@@ -13,11 +13,7 @@ import { cart } from '../assets/svg-icons'
 
 function CartPage() {
 	const dispatch = useDispatch()
-	const { items, totalPrice } = useSelector(state => state.cart)
-
-	const itemsCount = items.reduce((sum, obj) => {
-		return obj.count + sum
-	}, 0)
+	const { items, totalPrice, totalCount } = useSelector(state => state.cart)
 
 	return (
 		<div className="container container--cart">
@@ -35,14 +31,14 @@ function CartPage() {
 						</div>
 					</div>
 					<div className="cart__items">
-						{items.map(item => (
-							<CartItem key={item.id} {...item} />
+						{items.map((item, index) => (
+							<CartItem key={index} {...item} />
 						))}
 					</div>
 					<div className="cart__bottom">
 						<div className="cart__bottom-details">
 							<span>
-								Всего пицц: <b>{itemsCount} шт.</b>
+								Всего пицц: <b>{totalCount} шт.</b>
 							</span>
 							<span>
 								Сумма заказа: <b>{totalPrice} ₽</b>
