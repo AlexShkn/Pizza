@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 import styles from './ModalPizzaBlock.module.scss'
 
-import { buttonPlus } from '../../assets/svg-icons'
+import { buttonPlus } from 'assets/svg-icons'
 
 function ModalPizzaBlock(props) {
 	const {
@@ -41,11 +41,13 @@ function ModalPizzaBlock(props) {
 
 	return (
 		<div className={styles.modal}>
-			<div>
+			<div className={styles.wrapper}>
 				<button className={styles.close} onClick={() => setIsOpen(!modalIsOpen)}>
 					+
 				</button>
-				<img className={styles.imageUrl} src={imageUrl} alt="" />
+				<div className={styles.imageBlock}>
+					<img className={styles.imageUrl} src={imageUrl} alt="pizza" />
+				</div>
 				<div className={styles.body}>
 					<span className={styles.title}>{title}</span>
 					<div className={styles.description}>

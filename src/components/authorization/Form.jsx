@@ -36,7 +36,7 @@ function Form({ title, handleClick, button, error }) {
 						type="email"
 						value={email}
 						className="form__input"
-						placeholder=" "
+						placeholder="Введите ваш email"
 						onChange={e => setEmail(e.target.value)}
 					/>
 					<label className="form__label">Email</label>
@@ -60,7 +60,7 @@ function Form({ title, handleClick, button, error }) {
 						type="password"
 						value={pass}
 						className="form__input"
-						placeholder=" "
+						placeholder="Введите ваш пароль"
 						onChange={e => setPass(e.target.value)}
 					/>
 					<label className="form__label">Password</label>

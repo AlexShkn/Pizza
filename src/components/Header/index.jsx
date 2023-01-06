@@ -1,15 +1,15 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { useAuth } from '../hooks/useAuth'
-import { removeUser } from '../redux/slices/userSlice'
+import { useAuth } from 'hooks/useAuth'
+import { removeUser } from 'redux/slices/userSlice'
 
-import Search from './Search'
+import Search from '../Search'
 
-import logotype from '../assets/img/pizza-logo1.svg'
-import cart from '../assets/img/cart.svg'
-import profile from '../assets/img/profile.svg'
-import exit from '../assets/img/exit.svg'
+import logotype from 'assets/img/pizza-logo1.svg'
+import cart from 'assets/img/cart.svg'
+import profile from 'assets/img/profile.svg'
+import exit from 'assets/img/exit.svg'
 
 function Header() {
 	const { isAuth } = useAuth()

@@ -74,6 +74,7 @@
 		transition: all 0.3s ease 0s;
 		&:hover {
 			background-color: darken($orange, 8%);
+			transform: scale(1.03);
 		}
 
 		img {

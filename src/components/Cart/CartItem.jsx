@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addItem, removeItem, minusItem } from '../redux/slices/cartSlice'
-import { createUniqItemId } from '../utils/createUniqItemId'
+import { addItem, removeItem, minusItem } from 'redux/slices/cartSlice'
+import { createUniqItemId } from 'utils/createUniqItemId'
 
-import { itemRemove } from '../assets/svg-icons'
+import { itemRemove } from 'assets/svg-icons'
 
 function CartItem({ imageUrl, title, type, size, price, id }) {
 	const dispatch = useDispatch()

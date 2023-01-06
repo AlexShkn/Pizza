@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import debounce from 'lodash.debounce'
-import useWindowSize from '../../hooks/useWindowSize'
-import { setSearchInputValue, setSearchValue } from '../../redux/slices/filterSlice'
+import useWindowSize from 'hooks/useWindowSize'
+import { setSearchInputValue, setSearchValue } from 'redux/slices/filterSlice'
 
 import styles from './Search.module.scss'
 

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { calcTotalPrice, calcTotalCount } from '../../utils/calcTotal'
+import { calcTotalPrice, calcTotalCount } from 'utils/calcTotal'
 
 const initialState = {
 	items: [],

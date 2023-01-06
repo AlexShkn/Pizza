@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setSortType } from '../redux/slices/filterSlice'
+import { setSortType } from '../../redux/slices/filterSlice'
 
-import { sortTriangle } from '../assets/svg-icons'
+import { sortTriangle } from '../../assets/svg-icons'
 
 const sortNamesList = [
 	{ name: 'цене(ASC)', sortProperty: '-price' },

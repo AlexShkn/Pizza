@@ -1,4 +1,4 @@
-@import '../../scss/variables';
+@import '../../../scss/variables';
 
 .modal {
 	position: relative;
@@ -7,15 +7,20 @@
 	justify-content: space-between;
 	width: 770px;
 	height: 385px;
+	.wrapper {
+		display: flex;
+	}
+	.imageBlock {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-right: 30px;
+	}
 	.imageUrl {
 		width: 270px;
 		height: 270px;
-		margin-right: 50px;
-		margin-top: 50px;
 	}
-	div {
-		display: flex;
-	}
+
 	.body {
 		display: flex;
 		flex-direction: column;

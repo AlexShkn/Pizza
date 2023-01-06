@@ -1,19 +1,43 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Modal from 'react-modal'
 import { Helmet } from 'react-helmet'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-import { clearItem } from '../redux/slices/cartSlice'
+import { CartItem, CartEmpty, ModalCartClear } from 'components/Cart/index'
 
-import CartItem from '../components/CartItem'
-import CartEmpty from '../components/CartEmpty'
+import clear from 'assets/img/cart-clear.svg'
+import { cart } from 'assets/svg-icons'
 
-import clear from '../assets/img/cart-clear.svg'
-import { cart } from '../assets/svg-icons'
+const customStyles = {
+	overlay: {
+		position: 'fixed',
+		zIndex: 1020,
+		top: 0,
+		left: 0,
+		width: '100vw',
+		height: '100vh',
+		background: 'rgba(0, 0, 0, 0.6)',
+		backdropFilter: 'blur(3px)',
+	},
+
+	content: {
+		top: '40%',
+		left: '50%',
+		right: 'auto',
+		bottom: 'auto',
+		marginRight: '-50%',
+		transform: 'translate(-50%, -50%)',
+		padding: '30px',
+		borderRadius: '5px',
+		boxShadow: '0 3rem 5rem rgba(0, 0, 0, 0.3)',
+	},
+}
 
 function CartPage() {
-	const dispatch = useDispatch()
 	const { items, totalPrice, totalCount } = useSelector(state => state.cart)
+
+	const [modalIsOpen, setIsOpen] = React.useState(false)
 
 	return (
 		<div className="container container--cart">
@@ -25,7 +49,7 @@ function CartPage() {
 				<div className="cart">
 					<div className="cart__top">
 						<h2 className="content__title">{cart}Корзина</h2>
-						<div onClick={() => dispatch(clearItem())} className="cart__clear">
+						<div onClick={() => setIsOpen(!modalIsOpen)} className="cart__clear">
 							<img src={clear} alt="" />
 							<span>Очистить корзину</span>
 						</div>
@@ -59,6 +83,12 @@ function CartPage() {
 			) : (
 				<CartEmpty />
 			)}
+			<Modal
+				isOpen={modalIsOpen}
+				onRequestClose={() => setIsOpen(!modalIsOpen)}
+				style={customStyles}>
+				<ModalCartClear modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
+			</Modal>
 		</div>
 	)
 }

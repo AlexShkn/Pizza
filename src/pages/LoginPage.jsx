@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import Login from '../components/authorization/Login'
+import Login from 'components/authorization/Login'
 
 function LoginPage() {
 	return (

@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 
-import { setUser } from '../../redux/slices/userSlice'
+import { setUser } from 'redux/slices/userSlice'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import Form from './Form'
 

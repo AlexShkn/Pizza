@@ -2,14 +2,24 @@ import React from 'react'
 import Modal from 'react-modal'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { addItem, removeItem } from '../../redux/slices/cartSlice'
-import { createUniqItemId } from '../../utils/createUniqItemId'
+import { addItem, removeItem } from 'redux/slices/cartSlice'
+import { createUniqItemId } from 'utils/createUniqItemId'
 
-import ModalPizzaBlock from '../ModalPizzaBlock'
+import ModalPizzaBlock from './ModalPizzaBlock'
 
-import { buttonPlus } from '../../assets/svg-icons'
+import { buttonPlus } from 'assets/svg-icons'
 
 const customStyles = {
+	overlay: {
+		position: 'fixed',
+		zIndex: 1020,
+		top: 0,
+		left: 0,
+		width: '100vw',
+		height: '100vh',
+		background: 'rgba(0, 0, 0, 0.6)',
+		backdropFilter: 'blur(3px)',
+	},
 	content: {
 		top: '50%',
 		left: '50%',
@@ -18,7 +28,8 @@ const customStyles = {
 		marginRight: '-50%',
 		transform: 'translate(-50%, -50%)',
 		padding: '30px',
-		border: '2px solid #232323',
+		borderRadius: '5px',
+		boxShadow: '0 3rem 5rem rgba(0, 0, 0, 0.3)',
 	},
 }
 
@@ -130,7 +141,6 @@ function PizzaBlock(props) {
 					setSelectedType={setSelectedType}
 					isAddedToCart={isAddedToCart}
 					finalPrice={finalPrice}
-					weight={weight}
 					{...props}
 				/>
 			</Modal>

@@ -1,17 +1,14 @@
 import React from 'react'
-import axios from 'axios'
-import { Helmet } from 'react-helmet'
-import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { Helmet } from 'react-helmet'
+import axios from 'axios'
 import qs from 'qs'
 
-import { setPizzasAmount } from '../redux/slices/filterSlice'
+import { setPizzasAmount } from 'redux/slices/filterSlice'
 
-import Categories from '../components/Categories'
-import Sort from '../components/Sort'
-import PizzaBlock from '../components/PizzaBlock'
-import Skeleton from '../components/PizzaBlock/Skeleton'
-import Pagination from '../components/Pagination'
+import { Categories, Sort, PizzaBlock, Skeleton, Pagination } from 'components'
 
 function HomePage() {
 	const navigate = useNavigate()
@@ -46,8 +43,7 @@ function HomePage() {
 			}
 		}
 		fetchData()
-		// window.scrollTo(0, 0)
-	}, [categoryId, sort, searchValue, currentPage])
+	}, [categoryId, sort, searchValue, currentPage, dispatch])
 
 	React.useEffect(() => {
 		const params = {
@@ -57,7 +53,7 @@ function HomePage() {
 		}
 		const queryString = qs.stringify(params, { skipNulls: true })
 		navigate(`/?${queryString}`)
-	}, [categoryId, sort, currentPage])
+	}, [categoryId, sort, currentPage, navigate])
 
 	const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />)
 	const pizzasList = catalog.map(item => <PizzaBlock key={item.id} {...item} />)
