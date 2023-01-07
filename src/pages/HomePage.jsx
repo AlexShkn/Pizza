@@ -8,7 +8,7 @@ import qs from 'qs'
 
 import { setPizzasAmount } from 'redux/slices/filterSlice'
 
-import { Categories, Sort, PizzaBlock, Skeleton, Pagination } from 'components'
+import { Categories, Sort, PizzaBlock, SkeletonPizzaBlock, Pagination } from 'components'
 
 function HomePage() {
 	const navigate = useNavigate()
@@ -55,7 +55,7 @@ function HomePage() {
 		navigate(`/?${queryString}`)
 	}, [categoryId, sort, currentPage, navigate])
 
-	const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />)
+	const skeleton = [...new Array(6)].map((_, index) => <SkeletonPizzaBlock key={index} />)
 	const pizzasList = catalog.map(item => <PizzaBlock key={item.id} {...item} />)
 
 	return (

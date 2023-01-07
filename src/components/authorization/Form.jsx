@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 import './form.scss'
 
@@ -16,12 +17,35 @@ function Form({ title, handleClick, button, error }) {
 		mode: 'onBlur',
 	})
 
+	let errorDescr = ''
+
+	switch (error) {
+		case 'auth/wrong-password':
+			errorDescr = 'Неправильный логин или пароль'
+			break
+		case 'auth/user-not-found':
+			errorDescr = (
+				<div>
+					<span>Пользователя не существует </span>
+					<Link to="/register">
+						<b style={{ color: 'rgb(26, 115, 232)' }}>создать нового?</b>
+					</Link>
+				</div>
+			)
+			break
+		case 'auth/email-already-in-use':
+			errorDescr = 'Данный email адрес уже занят'
+			break
+		default:
+			break
+	}
+
 	return (
 		<form onSubmit={handleSubmit(() => handleClick(email, pass))} className="l-form">
 			<div action="" className="form">
 				<h1 className="form__title">{title}</h1>
 				<div style={{ height: '40px' }}>
-					<p style={{ color: 'red' }}>{errors?.email?.message || error}</p>
+					<p style={{ color: 'red' }}>{errors?.email?.message || errorDescr}</p>
 				</div>
 
 				<div className="form__div">

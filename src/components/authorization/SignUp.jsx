@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
+
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { setUser } from 'redux/slices/userSlice'
-
 import Form from './Form'
 
 function SignUp() {
@@ -26,7 +26,7 @@ function SignUp() {
 				)
 				navigate('/')
 			})
-			.catch(() => setError('Данный email адрес уже существует'))
+			.catch(error => setError(error.code))
 	}
 
 	return (

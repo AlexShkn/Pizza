@@ -15,7 +15,6 @@ function Login() {
 		const auth = getAuth()
 		signInWithEmailAndPassword(auth, email, password)
 			.then(({ user }) => {
-				console.log(user)
 				dispatch(
 					setUser({
 						email: user.email,
@@ -25,7 +24,7 @@ function Login() {
 				)
 				navigate('/')
 			})
-			.catch(() => setError('Пользователя не существует'))
+			.catch(error => setError(error.code))
 	}
 
 	return (
