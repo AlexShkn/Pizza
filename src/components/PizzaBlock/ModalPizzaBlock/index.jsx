@@ -42,7 +42,9 @@ function ModalPizzaBlock(props) {
 	return (
 		<div className={styles.modal}>
 			<div className={styles.wrapper}>
-				<button className={styles.close} onClick={() => setIsOpen(!modalIsOpen)}>
+				<button
+					className={styles.close}
+					onClick={() => setIsOpen(!modalIsOpen)}>
 					+
 				</button>
 				<div className={styles.imageBlock}>
@@ -78,7 +80,10 @@ function ModalPizzaBlock(props) {
 							<div>
 								<p className={styles.compound}>
 									<span>Вес: </span>
-									{selectedType === 1 ? Math.floor(currentWeight * 1.3) : currentWeight}г
+									{selectedType === 1
+										? Math.floor(currentWeight * 1.3)
+										: currentWeight}
+									г
 								</p>
 							</div>
 						)}
@@ -93,7 +98,9 @@ function ModalPizzaBlock(props) {
 					</div>
 					<div className={styles.navigate}>
 						<span className={styles.price}>Цена: {finalPrice} ₽</span>
-						<button onClick={() => onClickAdd()} className="button button--outline button--add">
+						<button
+							onClick={() => onClickAdd()}
+							className="button button--outline button--add">
 							{!isAddedToCart ? buttonPlus : ''}
 							<span>{!isAddedToCart ? 'Добавить в корзину' : 'В корзине'}</span>
 							{isAddedToCart ? <i>✔</i> : ''}

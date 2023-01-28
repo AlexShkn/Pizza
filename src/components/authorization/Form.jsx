@@ -11,7 +11,6 @@ function Form({ title, handleClick, button, error }) {
 	const {
 		register,
 		formState: { errors, isValid },
-		reset,
 		handleSubmit,
 	} = useForm({
 		mode: 'onBlur',
@@ -41,7 +40,9 @@ function Form({ title, handleClick, button, error }) {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(() => handleClick(email, pass))} className="l-form">
+		<form
+			onSubmit={handleSubmit(() => handleClick(email, pass))}
+			className="l-form">
 			<div action="" className="form">
 				<h1 className="form__title">{title}</h1>
 				<div style={{ height: '40px' }}>
@@ -60,7 +61,7 @@ function Form({ title, handleClick, button, error }) {
 						type="email"
 						value={email}
 						className="form__input"
-						placeholder="Введите ваш email"
+						placeholder=" "
 						onChange={e => setEmail(e.target.value)}
 					/>
 					<label className="form__label">Email</label>
@@ -68,7 +69,9 @@ function Form({ title, handleClick, button, error }) {
 
 				<div style={{ height: '40px' }}>
 					{errors?.password && (
-						<p style={{ color: 'red' }}>{errors?.password?.message || 'Error!'}</p>
+						<p style={{ color: 'red' }}>
+							{errors?.password?.message || 'Error!'}
+						</p>
 					)}
 				</div>
 
@@ -84,7 +87,7 @@ function Form({ title, handleClick, button, error }) {
 						type="password"
 						value={pass}
 						className="form__input"
-						placeholder="Введите ваш пароль"
+						placeholder=" "
 						onChange={e => setPass(e.target.value)}
 					/>
 					<label className="form__label">Password</label>
@@ -94,7 +97,6 @@ function Form({ title, handleClick, button, error }) {
 					className="form__submit form__button"
 					type="submit"
 					value={button}
-					// disabled={!isValid}
 				/>
 			</div>
 		</form>

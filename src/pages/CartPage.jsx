@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 import { CartItem, CartEmpty, ModalCartClear } from 'components/Cart/index'
 
 import clear from 'assets/img/cart-clear.svg'
-import { cart } from 'assets/svg-icons'
 
 const customStyles = {
 	overlay: {
@@ -48,8 +47,22 @@ function CartPage() {
 			{items.length ? (
 				<div className="cart">
 					<div className="cart__top">
-						<h2 className="content__title">{cart}Корзина</h2>
-						<div onClick={() => setIsOpen(!modalIsOpen)} className="cart__clear">
+						<h2 className="content__title">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="18"
+								height="18"
+								fill="none"
+								viewBox="0 0 18 18">
+								<path
+									stroke="#fff"
+									d="M6.333 16.333a1.333 1.333 0 100-2.666 1.333 1.333 0 000 2.666zM14.333 16.333a1.333 1.333 0 100-2.666 1.333 1.333 0 000 2.666zM4.78 5h11.553l-1.12 5.593a1.334 1.334 0 01-1.333 1.074H6.833a1.334 1.334 0 01-1.333-1.16l-1.013-7.68a1.333 1.333 0 00-1.32-1.16h-1.5"></path>
+							</svg>
+							Корзина
+						</h2>
+						<div
+							onClick={() => setIsOpen(!modalIsOpen)}
+							className="cart__clear">
 							<img src={clear} alt="" />
 							<span>Очистить корзину</span>
 						</div>

@@ -8,13 +8,21 @@ import qs from 'qs'
 
 import { setPizzasAmount } from 'redux/slices/filterSlice'
 
-import { Categories, Sort, PizzaBlock, SkeletonPizzaBlock, Pagination } from 'components'
+import {
+	Categories,
+	Sort,
+	PizzaBlock,
+	SkeletonPizzaBlock,
+	Pagination,
+} from 'components'
 
 function HomePage() {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
-	const { categoryId, sort, currentPage, searchValue } = useSelector(state => state.filter)
+	const { categoryId, sort, currentPage, searchValue } = useSelector(
+		state => state.filter,
+	)
 
 	const [catalog, setCatalog] = React.useState([])
 	const [dataIsLoading, setDataIsLoading] = React.useState(true)
@@ -55,7 +63,9 @@ function HomePage() {
 		navigate(`/?${queryString}`)
 	}, [categoryId, sort, currentPage, navigate])
 
-	const skeleton = [...new Array(6)].map((_, index) => <SkeletonPizzaBlock key={index} />)
+	const skeleton = [...new Array(6)].map((_, index) => (
+		<SkeletonPizzaBlock key={index} />
+	))
 	const pizzasList = catalog.map(item => <PizzaBlock key={item.id} {...item} />)
 
 	return (
@@ -69,7 +79,9 @@ function HomePage() {
 				<Sort />
 			</div>
 			<h2 className="content__title">Все пиццы</h2>
-			<div className="content__items">{dataIsLoading ? skeleton : pizzasList}</div>
+			<div className="content__items">
+				{dataIsLoading ? skeleton : pizzasList}
+			</div>
 			<Pagination />
 		</>
 	)

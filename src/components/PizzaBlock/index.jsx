@@ -90,7 +90,9 @@ function PizzaBlock(props) {
 						alt="Pizza"
 						onClick={() => setIsOpen(!modalIsOpen)}
 					/>
-					<h4 onClick={() => setIsOpen(!modalIsOpen)} className="pizza-block__title">
+					<h4
+						onClick={() => setIsOpen(!modalIsOpen)}
+						className="pizza-block__title">
 						{title}
 					</h4>
 					<div className="pizza-block__selector">
@@ -119,7 +121,9 @@ function PizzaBlock(props) {
 						<div className="pizza-block__price">
 							<span>{finalPrice}</span> ₽
 						</div>
-						<button onClick={() => onClickAdd()} className="button button--outline button--add">
+						<button
+							onClick={() => onClickAdd()}
+							className="button button--outline button--add">
 							{!isAddedToCart ? buttonPlus : ''}
 							<span>{!isAddedToCart ? 'Добавить' : 'В корзине'}</span>
 							{isAddedToCart ? <i>✔</i> : ''}

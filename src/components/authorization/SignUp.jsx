@@ -30,7 +30,11 @@ function SignUp() {
 	}
 
 	return (
-		<Form button="Отправить" title="Регистрация" handleClick={handleRegister} error={error}></Form>
+		<Form
+			button="Отправить"
+			title="Регистрация"
+			handleClick={handleRegister}
+			error={error}></Form>
 	)
 }
 

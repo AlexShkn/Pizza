@@ -4,7 +4,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './scss/app.scss'
 
 import Header from './components/Header'
-import { HomePage, CartPage, LoginPage, RegisterPage, NotFound } from './pages/index'
+import {
+	HomePage,
+	CartPage,
+	LoginPage,
+	RegisterPage,
+	NotFound,
+} from './pages/index'
 
 function App() {
 	return (

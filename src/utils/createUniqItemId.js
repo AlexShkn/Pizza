@@ -1,3 +1,3 @@
 export const createUniqItemId = (id, type, size) => {
-	return (id + type + size).toString()
+	return id.toString() + type.toString() + size.toString()
 }

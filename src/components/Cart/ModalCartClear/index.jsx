@@ -22,7 +22,9 @@ function CartClearModal({ modalIsOpen, setIsOpen }) {
 					onClick={() => cartClear()}>
 					Очистить
 				</button>
-				<button className="button pay-btn" onClick={() => setIsOpen(!modalIsOpen)}>
+				<button
+					className="button pay-btn"
+					onClick={() => setIsOpen(!modalIsOpen)}>
 					Отмена
 				</button>
 			</div>

@@ -2,8 +2,6 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSortType } from '../../redux/slices/filterSlice'
 
-import { sortTriangle } from '../../assets/svg-icons'
-
 const sortNamesList = [
 	{ name: 'цене(ASC)', sortProperty: '-price' },
 	{ name: 'цене(DESC)', sortProperty: 'price' },
@@ -45,10 +43,14 @@ function Sort() {
 					viewBox="0 0 10 6"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg">
-					{sortTriangle}
+					<path
+						fill="#2C2C2C"
+						d="M10 5a.6.6 0 01-.186.44.6.6 0 01-.439.185H.625a.6.6 0 01-.44-.186A.6.6 0 010 5a.6.6 0 01.186-.44L4.56.187A.6.6 0 015 0a.6.6 0 01.44.186L9.813 4.56A.6.6 0 0110 5z"></path>
 				</svg>
 				<b>Сортировка по:</b>
-				<span onClick={() => setOpenSortList(!onOpenSortList)}>{sortType.name}</span>
+				<span onClick={() => setOpenSortList(!onOpenSortList)}>
+					{sortType.name}
+				</span>
 			</div>
 
 			{onOpenSortList && (
@@ -58,7 +60,9 @@ function Sort() {
 							<li
 								onClick={() => updateSelectedSortItem(obj)}
 								key={index}
-								className={sortType.sortProperty === obj.sortProperty ? 'active' : ''}>
+								className={
+									sortType.sortProperty === obj.sortProperty ? 'active' : ''
+								}>
 								{obj.name}
 							</li>
 						))}

@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addItem, removeItem, minusItem } from 'redux/slices/cartSlice'
 import { createUniqItemId } from 'utils/createUniqItemId'
 
-import { itemRemove } from 'assets/svg-icons'
-
 function CartItem({ imageUrl, title, type, size, price, id }) {
 	const dispatch = useDispatch()
 	const { items, pizzasTypes } = useSelector(state => state.cart)
@@ -50,7 +48,19 @@ function CartItem({ imageUrl, title, type, size, price, id }) {
 				<div
 					onClick={() => dispatch(removeItem(itemId))}
 					className="button button--outline button--circle">
-					{itemRemove}
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="10"
+						height="10"
+						fill="none"
+						viewBox="0 0 10 10">
+						<path
+							fill="#EB5A1E"
+							d="M5.92 3.84v4.8a.96.96 0 01-1.92 0V.96a.96.96 0 011.92 0v2.88z"></path>
+						<path
+							fill="#EB5A1E"
+							d="M5.76 5.92H.96A.96.96 0 01.96 4h7.68a.96.96 0 010 1.92H5.76z"></path>
+					</svg>
 				</div>
 			</div>
 		</div>
